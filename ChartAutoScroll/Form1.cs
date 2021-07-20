@@ -1,0 +1,246 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
+namespace ChartAutoScroll
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            SetDatalist();
+
+            PowerDataChart.ChartAreas[0].AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Dot;
+            PowerDataChart.Series[0].Color = Color.White;
+
+            // 横ラベル表示
+            PowerDataChart.ChartAreas[0].AxisX.LabelStyle.Enabled = true;
+
+            // コンボボックス
+            for (int i = 1; i < 30; i++)
+            {
+                int num = i * 10;
+                comboBox1.Items.Add(num.ToString());
+            }
+
+        }
+
+
+        
+
+        // ダミーの力データ
+        void DummyData2()
+        {
+            Random r = new Random();
+            int i = r.Next(99);
+            string fx = $"{r.Next(-9, 9)}.{r.Next(99)}";
+            string fy = $"{r.Next(-9, 9)}.{r.Next(99)}";
+            string fz = $"{r.Next(-9, 9)}.{r.Next(99)}";
+            string mx = $"{r.Next(-9, 9)}.{r.Next(999)}";
+            string my = $"{r.Next(-9, 9)}.{r.Next(999)}";
+            string mz = $"{r.Next(-9, 9)}.{r.Next(999)}";
+
+
+            PowerDataChart.Series[0].Points.AddXY(xnum, double.Parse(fx));
+            //chart1.Series[1].Points.AddXY(xnum, double.Parse(fy));
+            //chart1.Series[2].Points.AddXY(xnum, double.Parse(fz));
+            //chart1.Series[3].Points.AddXY(xnum, double.Parse(mx));
+            //chart1.Series[4].Points.AddXY(xnum, double.Parse(my));
+            //chart1.Series[5].Points.AddXY(xnum, double.Parse(mz));
+
+            // Xレンジ
+            double xRange = double.Parse(dataGridView1.Rows[7].Cells[1].Value.ToString());
+            if (double.TryParse(comboBox1.Text, out double d))
+            {
+                xRange = d;
+            }
+
+            PowerDataChart.ChartAreas[0].AxisX.Minimum = xnum - xRange;
+            PowerDataChart.ChartAreas[0].AxisX.Maximum = xnum;
+            PowerDataChart.ChartAreas[0].AxisX.Interval = xRange / 10;
+
+
+            xnum++;
+            textBox2.Text = xnum.ToString();
+            hScrollBar1.Maximum = xnum;
+            hScrollBar1.Value = hScrollBar1.Maximum;
+        }
+
+
+
+        int xnum = 0;
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DummyData2();
+        }
+
+
+        // Yの max, min, インターバルの設定
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PowerDataChart.ChartAreas[0].AxisY.Minimum = double.Parse(dataGridView1.Rows[0].Cells[1].Value.ToString());
+                PowerDataChart.ChartAreas[0].AxisY.Maximum = double.Parse(dataGridView1.Rows[1].Cells[1].Value.ToString());
+                PowerDataChart.ChartAreas[0].AxisY.Interval = double.Parse(dataGridView1.Rows[2].Cells[1].Value.ToString());
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            double d = double.Parse(dataGridView1.Rows[4].Cells[1].Value.ToString());
+            d = d * 5;
+            PowerDataChart.ChartAreas[0].AxisY.Minimum = -d;
+            PowerDataChart.ChartAreas[0].AxisY.Maximum = d;
+            PowerDataChart.ChartAreas[0].AxisY.Interval = d / 5;
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            PowerDataChart.ChartAreas[0].AxisX.Minimum = double.Parse(dataGridView1.Rows[5].Cells[1].Value.ToString());
+            PowerDataChart.ChartAreas[0].AxisX.Maximum = double.Parse(dataGridView1.Rows[6].Cells[1].Value.ToString());
+        }
+
+
+
+        // データのセット
+        private void SetDatalist()
+        {
+            // データセットを作成
+            DataSet dataSet = new DataSet("データリスト");
+
+            // データテーブルを作成
+            DataTable table = new DataTable("Table");
+
+            // データテーブルに列を追加
+            table.Columns.Add("ラベル");
+            table.Columns.Add("値");
+
+            string[] array = new string[] { "いち", "に"};
+
+
+            // データセットにデータテーブルを追加
+            dataSet.Tables.Add(table);
+
+            table.Rows.Add("min", "-10");
+            table.Rows.Add("max", "10");
+            table.Rows.Add("interval", "2");
+            table.Rows.Add("固定", "10");
+            table.Rows.Add("Yレンジ", "2");
+            table.Rows.Add("X min", "2");
+            table.Rows.Add("X max", "5");
+            table.Rows.Add("X レンジ", "100");
+            
+            table.Rows.Add(array); //テーブルは配列が入る
+
+
+
+
+            PowerDataChart.ChartAreas[0].AxisY.Minimum = -10;
+            PowerDataChart.ChartAreas[0].AxisY.Maximum = 10;
+            PowerDataChart.ChartAreas[0].AxisY.Interval = 2;
+
+
+            // データグリッドにテーブルを表示する
+            this.dataGridView1.DataSource = table;
+
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.AllowUserToAddRows = false;
+            //DataGridView1の行の高さをユーザーが変更できないようにする
+            dataGridView1.AllowUserToResizeRows = false;
+            //DataGridViewのすべての行の高さを自動調整する
+            dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+            //DataGridViewのすべての列の幅を自動調整する
+            dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+
+        }
+
+        // グラフのクリア
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            PowerDataChart.Series[0].Points.Clear();
+            xnum = 0;
+        }
+
+
+
+        // スクロールバーの移動
+        private void HScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            double xRange = double.Parse(dataGridView1.Rows[7].Cells[1].Value.ToString());
+
+            hScrollBar1.Maximum = xnum;
+
+            if (xnum > 8)
+            {
+                int p = hScrollBar1.Value;
+                p += 8;
+
+                textBox1.Text = p.ToString();
+                textBox2.Text = xnum.ToString();
+
+                PowerDataChart.ChartAreas[0].AxisX.Minimum = -5000;
+                PowerDataChart.ChartAreas[0].AxisX.Maximum = p;
+                PowerDataChart.ChartAreas[0].AxisX.Minimum = p - xRange;
+                PowerDataChart.ChartAreas[0].AxisX.Interval = xRange / 10;
+            }
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            DummyData2();
+        }
+
+
+        // タイマー１の起動・停止
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox c = (CheckBox)sender;
+            if (c.Checked)
+            {
+                timer1.Interval = 100;
+                timer1.Enabled = true;
+            }
+            else
+            {
+                timer1.Enabled = false;
+            }
+        }
+
+
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Xレンジ
+                double xRange = double.Parse(dataGridView1.Rows[7].Cells[1].Value.ToString());
+                xRange = double.Parse(comboBox1.Text);
+                PowerDataChart.ChartAreas[0].AxisX.Minimum = xnum - xRange;
+                PowerDataChart.ChartAreas[0].AxisX.Maximum = xnum;
+                PowerDataChart.ChartAreas[0].AxisX.Interval = xRange / 10;
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+    }
+}
