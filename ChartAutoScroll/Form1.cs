@@ -43,7 +43,9 @@ namespace ChartAutoScroll
             PowerDataChart.Series[4].Enabled = MyChk.Checked;
             PowerDataChart.Series[5].Enabled = MzChk.Checked;
 
-
+            // チャートの罫線を表示（1つ以上のデータが必要）
+            PowerDataChart.Series[6].Points.Clear();
+            PowerDataChart.Series[6].Points.AddY(0);
 
         }
 
@@ -94,6 +96,11 @@ namespace ChartAutoScroll
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // チャートの罫線を表示（1つ以上のデータが必要）
+            PowerDataChart.Series[6].Points.Clear();
+            PowerDataChart.Series[6].Points.AddY(0);
+
+
             DummyData2();
         }
 
