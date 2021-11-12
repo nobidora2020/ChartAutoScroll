@@ -9,8 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-
 // 横に流れるチャート
+
 namespace ChartAutoScroll
 {
     public partial class Form1 : Form
@@ -34,7 +34,7 @@ namespace ChartAutoScroll
             for (int i = 1; i < 30; i++)
             {
                 int num = i * 10;
-                comboBox1.Items.Add(num.ToString());
+                xRangeCmb.Items.Add(num.ToString());
             }
             PowerDataChart.Series[0].Enabled = FxChk.Checked;
             PowerDataChart.Series[1].Enabled = FyChk.Checked;
@@ -47,12 +47,15 @@ namespace ChartAutoScroll
             PowerDataChart.Series[6].Points.Clear();
             PowerDataChart.Series[6].Points.AddY(0);
 
+            xRangeCmb.Text = xnum - PowerDataChart.ChartAreas[0].AxisX.Minimum +"";
         }
 
 
 
 
-        // ダミーの力データ
+        /// <summary>
+        /// ダミーの力データ
+        /// </summary>
         void DummyData2()
         {
             Random r = new Random();
@@ -74,7 +77,7 @@ namespace ChartAutoScroll
 
             // Xレンジ
             double xRange = double.Parse(dataGridView1.Rows[7].Cells[1].Value.ToString());
-            if (double.TryParse(comboBox1.Text, out double d))
+            if (double.TryParse(xRangeCmb.Text, out double d))
             {
                 xRange = d;
             }
@@ -91,8 +94,8 @@ namespace ChartAutoScroll
         }
 
 
+        public int xnum { get; set; }
 
-        int xnum = 0;
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -114,8 +117,8 @@ namespace ChartAutoScroll
                 PowerDataChart.ChartAreas[0].AxisY.Maximum = double.Parse(dataGridView1.Rows[1].Cells[1].Value.ToString());
                 PowerDataChart.ChartAreas[0].AxisY.Interval = double.Parse(dataGridView1.Rows[2].Cells[1].Value.ToString());
             }
-            catch (Exception)
-            {
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -137,7 +140,9 @@ namespace ChartAutoScroll
 
         
 
-        // データのセット
+        /// <summary>
+        /// データのセット
+        /// </summary>
         private void SetDatalist()
         {
             // データセットを作成
@@ -235,21 +240,25 @@ namespace ChartAutoScroll
         }
 
 
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void XRangeCmb_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 // Xレンジ
                 double xRange = double.Parse(dataGridView1.Rows[7].Cells[1].Value.ToString());
-                xRange = double.Parse(comboBox1.Text);
+                xRange = double.Parse(xRangeCmb.Text);
                 PowerDataChart.ChartAreas[0].AxisX.Minimum = xnum - xRange;
                 PowerDataChart.ChartAreas[0].AxisX.Maximum = xnum;
                 PowerDataChart.ChartAreas[0].AxisX.Interval = xRange / 10;
             }
-            catch (Exception)
-            {
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
             }
         }
+
+
+        #region 各グラフの表示設定
+
 
         private void FxChk_CheckedChanged(object sender, EventArgs e)
         {
@@ -287,5 +296,7 @@ namespace ChartAutoScroll
             CheckBox c = (CheckBox)sender;
             PowerDataChart.Series[5].Enabled = c.Checked;
         }
+        #endregion
+
     }
 }
