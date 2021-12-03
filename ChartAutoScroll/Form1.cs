@@ -56,7 +56,7 @@ namespace ChartAutoScroll
         /// <summary>
         /// ダミーの力データ
         /// </summary>
-        void DummyData2()
+        private void DummyData2()
         {
             Random r = new Random();
             int i = r.Next(99);
@@ -97,19 +97,19 @@ namespace ChartAutoScroll
         public int xnum { get; set; }
 
 
-        private void button1_Click(object sender, EventArgs e)
+        // １つずつグラフを追加
+        private void OneAddBtn_Click(object sender, EventArgs e)
         {
             // チャートの罫線を表示（1つ以上のデータが必要）
             PowerDataChart.Series[6].Points.Clear();
             PowerDataChart.Series[6].Points.AddY(0);
-
 
             DummyData2();
         }
 
 
         // Yの max, min, インターバルの設定
-        private void Button2_Click(object sender, EventArgs e)
+        private void YIntervalBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace ChartAutoScroll
         }
 
 
-        private void Button3_Click(object sender, EventArgs e)
+        private void YRangeBtn_Click(object sender, EventArgs e)
         {
             double d = double.Parse(dataGridView1.Rows[4].Cells[1].Value.ToString());
             
@@ -187,30 +187,26 @@ namespace ChartAutoScroll
 
         }
 
+        
         // グラフのクリア
-        private void Button5_Click(object sender, EventArgs e)
+        private void ClearBtn_Click(object sender, EventArgs e) 
         {
             PowerDataChart.Series[0].Points.Clear();
             xnum = 0;
         }
 
 
-
         // スクロールバーの移動
         private void HScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
             double xRange = double.Parse(dataGridView1.Rows[7].Cells[1].Value.ToString());
-
             hScrollBar1.Maximum = xnum;
-
             if (xnum > 8)
             {
                 int p = hScrollBar1.Value;
                 p += 8;
-
                 textBox1.Text = p.ToString();
                 textBox2.Text = xnum.ToString();
-
                 PowerDataChart.ChartAreas[0].AxisX.Minimum = -5000;
                 PowerDataChart.ChartAreas[0].AxisX.Maximum = p;
                 PowerDataChart.ChartAreas[0].AxisX.Minimum = p - xRange;
@@ -250,6 +246,8 @@ namespace ChartAutoScroll
                 PowerDataChart.ChartAreas[0].AxisX.Minimum = xnum - xRange;
                 PowerDataChart.ChartAreas[0].AxisX.Maximum = xnum;
                 PowerDataChart.ChartAreas[0].AxisX.Interval = xRange / 10;
+
+                Console.WriteLine($"xnum:{xnum} xRnage:{xRange}");
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.Message);
@@ -298,5 +296,6 @@ namespace ChartAutoScroll
         }
         #endregion
 
+        
     }
 }
