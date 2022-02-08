@@ -15,24 +15,18 @@ namespace ChartAutoScroll
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
+        public Form1() {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void Form1_Load(object sender, EventArgs e) {
             SetDatalist();
-
             PowerDataChart.ChartAreas[0].AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Dot;
             PowerDataChart.Series[0].Color = Color.White;
-
             // 横ラベル表示
             PowerDataChart.ChartAreas[0].AxisX.LabelStyle.Enabled = true;
-
             // コンボボックス
-            for (int i = 1; i < 30; i++)
-            {
+            for (int i = 1; i < 30; i++) {
                 int num = i * 10;
                 xRangeCmb.Items.Add(num.ToString());
             }
@@ -42,22 +36,16 @@ namespace ChartAutoScroll
             PowerDataChart.Series[3].Enabled = MxChk.Checked;
             PowerDataChart.Series[4].Enabled = MyChk.Checked;
             PowerDataChart.Series[5].Enabled = MzChk.Checked;
-
             // チャートの罫線を表示（1つ以上のデータが必要）
             PowerDataChart.Series[6].Points.Clear();
             PowerDataChart.Series[6].Points.AddY(0);
-
-            xRangeCmb.Text = xnum - PowerDataChart.ChartAreas[0].AxisX.Minimum +"";
+            xRangeCmb.Text = Xnum - PowerDataChart.ChartAreas[0].AxisX.Minimum + "";
         }
-
-
-
 
         /// <summary>
         /// ダミーの力データ
         /// </summary>
-        private void DummyData2()
-        {
+        private void DummyData2() {
             Random r = new Random();
             int i = r.Next(99);
             string fx = $"{r.Next(-9, 9)}.{r.Next(99)}";
@@ -67,39 +55,34 @@ namespace ChartAutoScroll
             string my = $"{r.Next(-9, 9)}.{r.Next(999)}";
             string mz = $"{r.Next(-9, 9)}.{r.Next(999)}";
 
-
-            PowerDataChart.Series[0].Points.AddXY(xnum, double.Parse(fx));
-            PowerDataChart.Series[1].Points.AddXY(xnum, double.Parse(fy));
-            PowerDataChart.Series[2].Points.AddXY(xnum, double.Parse(fz));
-            PowerDataChart.Series[3].Points.AddXY(xnum, double.Parse(mx));
-            PowerDataChart.Series[4].Points.AddXY(xnum, double.Parse(my));
-            PowerDataChart.Series[5].Points.AddXY(xnum, double.Parse(mz));
+            PowerDataChart.Series[0].Points.AddXY(Xnum, double.Parse(fx));
+            PowerDataChart.Series[1].Points.AddXY(Xnum, double.Parse(fy));
+            PowerDataChart.Series[2].Points.AddXY(Xnum, double.Parse(fz));
+            PowerDataChart.Series[3].Points.AddXY(Xnum, double.Parse(mx));
+            PowerDataChart.Series[4].Points.AddXY(Xnum, double.Parse(my));
+            PowerDataChart.Series[5].Points.AddXY(Xnum, double.Parse(mz));
 
             // Xレンジ
             double xRange = double.Parse(dataGridView1.Rows[7].Cells[1].Value.ToString());
-            if (double.TryParse(xRangeCmb.Text, out double d))
-            {
+            if (double.TryParse(xRangeCmb.Text, out double d)) {
                 xRange = d;
             }
 
-            PowerDataChart.ChartAreas[0].AxisX.Minimum = xnum - xRange;
-            PowerDataChart.ChartAreas[0].AxisX.Maximum = xnum;
+            PowerDataChart.ChartAreas[0].AxisX.Minimum = Xnum - xRange;
+            PowerDataChart.ChartAreas[0].AxisX.Maximum = Xnum;
             PowerDataChart.ChartAreas[0].AxisX.Interval = xRange / 10;
 
-
-            xnum++;
-            textBox2.Text = xnum.ToString();
-            hScrollBar1.Maximum = xnum;
+            Xnum++;
+            textBox2.Text = Xnum.ToString();
+            hScrollBar1.Maximum = Xnum;
             hScrollBar1.Value = hScrollBar1.Maximum;
         }
 
 
-        public int xnum { get; set; }
-
+        public int Xnum { get; set; }
 
         // １つずつグラフを追加
-        private void OneAddBtn_Click(object sender, EventArgs e)
-        {
+        private void OneAddBtn_Click(object sender, EventArgs e) {
             // チャートの罫線を表示（1つ以上のデータが必要）
             PowerDataChart.Series[6].Points.Clear();
             PowerDataChart.Series[6].Points.AddY(0);
@@ -109,10 +92,8 @@ namespace ChartAutoScroll
 
 
         // Yの max, min, インターバルの設定
-        private void YIntervalBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
+        private void YIntervalBtn_Click(object sender, EventArgs e) {
+            try {
                 PowerDataChart.ChartAreas[0].AxisY.Minimum = double.Parse(dataGridView1.Rows[0].Cells[1].Value.ToString());
                 PowerDataChart.ChartAreas[0].AxisY.Maximum = double.Parse(dataGridView1.Rows[1].Cells[1].Value.ToString());
                 PowerDataChart.ChartAreas[0].AxisY.Interval = double.Parse(dataGridView1.Rows[2].Cells[1].Value.ToString());
@@ -122,29 +103,24 @@ namespace ChartAutoScroll
             }
         }
 
-
-        private void YRangeBtn_Click(object sender, EventArgs e)
-        {
+        // Yレンジ クリック
+        private void YRangeBtn_Click(object sender, EventArgs e) {
             double d = double.Parse(dataGridView1.Rows[4].Cells[1].Value.ToString());
-            
+
             PowerDataChart.ChartAreas[0].AxisY.Minimum = -d * 5;
             PowerDataChart.ChartAreas[0].AxisY.Maximum = d * 5;
             PowerDataChart.ChartAreas[0].AxisY.Interval = d;
         }
 
-        private void Button4_Click(object sender, EventArgs e)
-        {
+        private void Button4_Click(object sender, EventArgs e) {
             PowerDataChart.ChartAreas[0].AxisX.Minimum = double.Parse(dataGridView1.Rows[5].Cells[1].Value.ToString());
             PowerDataChart.ChartAreas[0].AxisX.Maximum = double.Parse(dataGridView1.Rows[6].Cells[1].Value.ToString());
         }
 
-        
-
         /// <summary>
         /// データのセット
         /// </summary>
-        private void SetDatalist()
-        {
+        private void SetDatalist() {
             // データセットを作成
             DataSet dataSet = new DataSet("データリスト");
             // データテーブルを作成
@@ -187,26 +163,22 @@ namespace ChartAutoScroll
 
         }
 
-        
         // グラフのクリア
-        private void ClearBtn_Click(object sender, EventArgs e) 
-        {
+        private void ClearBtn_Click(object sender, EventArgs e) {
             PowerDataChart.Series[0].Points.Clear();
-            xnum = 0;
+            Xnum = 0;
         }
 
 
         // スクロールバーの移動
-        private void HScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {
+        private void HScrollBar1_Scroll(object sender, ScrollEventArgs e) {
             double xRange = double.Parse(dataGridView1.Rows[7].Cells[1].Value.ToString());
-            hScrollBar1.Maximum = xnum;
-            if (xnum > 8)
-            {
+            hScrollBar1.Maximum = Xnum;
+            if (Xnum > 8) {
                 int p = hScrollBar1.Value;
                 p += 8;
                 textBox1.Text = p.ToString();
-                textBox2.Text = xnum.ToString();
+                textBox2.Text = Xnum.ToString();
                 PowerDataChart.ChartAreas[0].AxisX.Minimum = -5000;
                 PowerDataChart.ChartAreas[0].AxisX.Maximum = p;
                 PowerDataChart.ChartAreas[0].AxisX.Minimum = p - xRange;
@@ -214,40 +186,33 @@ namespace ChartAutoScroll
             }
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
+        private void Timer1_Tick(object sender, EventArgs e) {
             DummyData2();
         }
 
-
         // タイマー１の起動・停止
-        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e) {
             CheckBox c = (CheckBox)sender;
-            if (c.Checked)
-            {
+            if (c.Checked) {
                 timer1.Interval = 100;
                 timer1.Enabled = true;
             }
-            else
-            {
+            else {
                 timer1.Enabled = false;
             }
         }
 
 
-        private void XRangeCmb_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
+        private void XRangeCmb_SelectedIndexChanged(object sender, EventArgs e) {
+            try {
                 // Xレンジ
                 double xRange = double.Parse(dataGridView1.Rows[7].Cells[1].Value.ToString());
                 xRange = double.Parse(xRangeCmb.Text);
-                PowerDataChart.ChartAreas[0].AxisX.Minimum = xnum - xRange;
-                PowerDataChart.ChartAreas[0].AxisX.Maximum = xnum;
+                PowerDataChart.ChartAreas[0].AxisX.Minimum = Xnum - xRange;
+                PowerDataChart.ChartAreas[0].AxisX.Maximum = Xnum;
                 PowerDataChart.ChartAreas[0].AxisX.Interval = xRange / 10;
 
-                Console.WriteLine($"xnum:{xnum} xRnage:{xRange}");
+                Console.WriteLine($"xnum:{Xnum} xRnage:{xRange}");
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.Message);
@@ -258,44 +223,38 @@ namespace ChartAutoScroll
         #region 各グラフの表示設定
 
 
-        private void FxChk_CheckedChanged(object sender, EventArgs e)
-        {
+        private void FxChk_CheckedChanged(object sender, EventArgs e) {
             CheckBox c = (CheckBox)sender;
             PowerDataChart.Series[0].Enabled = c.Checked;
         }
 
-        private void FyChk_CheckedChanged(object sender, EventArgs e)
-        {
+        private void FyChk_CheckedChanged(object sender, EventArgs e) {
             CheckBox c = (CheckBox)sender;
             PowerDataChart.Series[1].Enabled = c.Checked;
         }
 
-        private void FzChk_CheckedChanged(object sender, EventArgs e)
-        {
+        private void FzChk_CheckedChanged(object sender, EventArgs e) {
             CheckBox c = (CheckBox)sender;
             PowerDataChart.Series[2].Enabled = c.Checked;
 
         }
 
-        private void MxChk_CheckedChanged(object sender, EventArgs e)
-        {
+        private void MxChk_CheckedChanged(object sender, EventArgs e) {
             CheckBox c = (CheckBox)sender;
             PowerDataChart.Series[3].Enabled = c.Checked;
         }
 
-        private void MyChk_CheckedChanged(object sender, EventArgs e)
-        {
+        private void MyChk_CheckedChanged(object sender, EventArgs e) {
             CheckBox c = (CheckBox)sender;
             PowerDataChart.Series[4].Enabled = c.Checked;
         }
 
-        private void MzChk_CheckedChanged(object sender, EventArgs e)
-        {
+        private void MzChk_CheckedChanged(object sender, EventArgs e) {
             CheckBox c = (CheckBox)sender;
             PowerDataChart.Series[5].Enabled = c.Checked;
         }
         #endregion
 
-        
+
     }
 }

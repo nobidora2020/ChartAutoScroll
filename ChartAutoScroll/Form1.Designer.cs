@@ -30,20 +30,20 @@ namespace ChartAutoScroll
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.PowerDataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.oneAddBtn = new System.Windows.Forms.Button();
             this.yIntervalBtn = new System.Windows.Forms.Button();
@@ -72,135 +72,136 @@ namespace ChartAutoScroll
             this.PowerDataChart.BackColor = System.Drawing.Color.Black;
             this.PowerDataChart.BorderlineColor = System.Drawing.Color.Black;
             this.PowerDataChart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea2.AxisX.InterlacedColor = System.Drawing.Color.White;
-            chartArea2.AxisX.Interval = 1D;
-            chartArea2.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisX.LabelStyle.Enabled = false;
-            chartArea2.AxisX.LabelStyle.ForeColor = System.Drawing.Color.White;
-            chartArea2.AxisX.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.Maximum = 5D;
-            chartArea2.AxisX.Minimum = -5D;
-            chartArea2.AxisX.MinorGrid.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.MinorTickMark.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.ScaleBreakStyle.Enabled = true;
-            chartArea2.AxisX.ScaleView.Zoomable = false;
-            chartArea2.AxisX.ScrollBar.BackColor = System.Drawing.Color.DarkGray;
-            chartArea2.AxisX.ScrollBar.ButtonColor = System.Drawing.Color.Black;
-            chartArea2.AxisX.ScrollBar.ButtonStyle = System.Windows.Forms.DataVisualization.Charting.ScrollBarButtonStyles.SmallScroll;
-            chartArea2.AxisX.ScrollBar.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.TitleForeColor = System.Drawing.Color.White;
-            chartArea2.AxisY.Interval = 20D;
-            chartArea2.AxisY.LabelStyle.ForeColor = System.Drawing.Color.White;
-            chartArea2.AxisY.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY.MajorTickMark.Interval = 10D;
-            chartArea2.AxisY.MajorTickMark.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY.Maximum = 140D;
-            chartArea2.AxisY.Minimum = -140D;
-            chartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY.MinorTickMark.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY.TitleForeColor = System.Drawing.Color.White;
-            chartArea2.BackColor = System.Drawing.Color.Black;
-            chartArea2.BorderColor = System.Drawing.Color.White;
-            chartArea2.Name = "ChartArea1";
-            this.PowerDataChart.ChartAreas.Add(chartArea2);
-            legend2.BackColor = System.Drawing.Color.White;
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.PowerDataChart.Legends.Add(legend2);
-            this.PowerDataChart.Location = new System.Drawing.Point(12, 40);
-            this.PowerDataChart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            chartArea1.AxisX.InterlacedColor = System.Drawing.Color.White;
+            chartArea1.AxisX.Interval = 1D;
+            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisX.LabelStyle.Enabled = false;
+            chartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.Maximum = 5D;
+            chartArea1.AxisX.Minimum = -5D;
+            chartArea1.AxisX.MinorGrid.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.MinorTickMark.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.ScaleBreakStyle.Enabled = true;
+            chartArea1.AxisX.ScaleView.Zoomable = false;
+            chartArea1.AxisX.ScrollBar.BackColor = System.Drawing.Color.DarkGray;
+            chartArea1.AxisX.ScrollBar.ButtonColor = System.Drawing.Color.Black;
+            chartArea1.AxisX.ScrollBar.ButtonStyle = System.Windows.Forms.DataVisualization.Charting.ScrollBarButtonStyles.SmallScroll;
+            chartArea1.AxisX.ScrollBar.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.White;
+            chartArea1.AxisY.Interval = 20D;
+            chartArea1.AxisY.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisY.MajorTickMark.Interval = 10D;
+            chartArea1.AxisY.MajorTickMark.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisY.Maximum = 140D;
+            chartArea1.AxisY.Minimum = -140D;
+            chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisY.MinorTickMark.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisY.TitleForeColor = System.Drawing.Color.White;
+            chartArea1.BackColor = System.Drawing.Color.Black;
+            chartArea1.BorderColor = System.Drawing.Color.White;
+            chartArea1.Name = "ChartArea1";
+            this.PowerDataChart.ChartAreas.Add(chartArea1);
+            legend1.BackColor = System.Drawing.Color.White;
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.PowerDataChart.Legends.Add(legend1);
+            this.PowerDataChart.Location = new System.Drawing.Point(9, 32);
+            this.PowerDataChart.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.PowerDataChart.Name = "PowerDataChart";
-            series13.ChartArea = "ChartArea1";
-            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series13.Color = System.Drawing.Color.Blue;
-            series13.Legend = "Legend1";
-            series13.Name = "SeriesFx";
-            series14.ChartArea = "ChartArea1";
-            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series14.Color = System.Drawing.Color.Green;
-            series14.Legend = "Legend1";
-            series14.Name = "SeriesFy";
-            series15.ChartArea = "ChartArea1";
-            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series15.Color = System.Drawing.Color.Red;
-            series15.Legend = "Legend1";
-            series15.Name = "SeriesFz";
-            series16.ChartArea = "ChartArea1";
-            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series16.Color = System.Drawing.Color.Aqua;
-            series16.Legend = "Legend1";
-            series16.Name = "SeriesMx";
-            series17.ChartArea = "ChartArea1";
-            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series17.Color = System.Drawing.Color.Lime;
-            series17.Legend = "Legend1";
-            series17.Name = "SeriesMy";
-            series18.ChartArea = "ChartArea1";
-            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series18.Color = System.Drawing.Color.Fuchsia;
-            series18.Legend = "Legend1";
-            series18.Name = "SeriesMz";
-            series19.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            series19.ChartArea = "ChartArea1";
-            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series19.Color = System.Drawing.Color.Aqua;
-            series19.Legend = "Legend1";
-            series19.Name = "SeriesFx_Off";
-            series20.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            series20.ChartArea = "ChartArea1";
-            series20.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series20.Color = System.Drawing.Color.Lime;
-            series20.Legend = "Legend1";
-            series20.Name = "SeriesFy_Off";
-            series21.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            series21.ChartArea = "ChartArea1";
-            series21.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series21.Color = System.Drawing.Color.Fuchsia;
-            series21.Legend = "Legend1";
-            series21.Name = "SeriesFz_Off";
-            series22.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            series22.ChartArea = "ChartArea1";
-            series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series22.Color = System.Drawing.Color.Blue;
-            series22.Legend = "Legend1";
-            series22.Name = "SeriesMx_Off";
-            series23.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            series23.ChartArea = "ChartArea1";
-            series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series23.Color = System.Drawing.Color.Green;
-            series23.Legend = "Legend1";
-            series23.Name = "SeriesMy_Off";
-            series24.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            series24.ChartArea = "ChartArea1";
-            series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series24.Color = System.Drawing.Color.Red;
-            series24.Legend = "Legend1";
-            series24.Name = "SeriesMz_Off";
-            this.PowerDataChart.Series.Add(series13);
-            this.PowerDataChart.Series.Add(series14);
-            this.PowerDataChart.Series.Add(series15);
-            this.PowerDataChart.Series.Add(series16);
-            this.PowerDataChart.Series.Add(series17);
-            this.PowerDataChart.Series.Add(series18);
-            this.PowerDataChart.Series.Add(series19);
-            this.PowerDataChart.Series.Add(series20);
-            this.PowerDataChart.Series.Add(series21);
-            this.PowerDataChart.Series.Add(series22);
-            this.PowerDataChart.Series.Add(series23);
-            this.PowerDataChart.Series.Add(series24);
-            this.PowerDataChart.Size = new System.Drawing.Size(643, 398);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series1.Color = System.Drawing.Color.Blue;
+            series1.Legend = "Legend1";
+            series1.Name = "SeriesFx";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series2.Color = System.Drawing.Color.Green;
+            series2.Legend = "Legend1";
+            series2.Name = "SeriesFy";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series3.Color = System.Drawing.Color.Red;
+            series3.Legend = "Legend1";
+            series3.Name = "SeriesFz";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series4.Color = System.Drawing.Color.Aqua;
+            series4.Legend = "Legend1";
+            series4.Name = "SeriesMx";
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series5.Color = System.Drawing.Color.Lime;
+            series5.Legend = "Legend1";
+            series5.Name = "SeriesMy";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series6.Color = System.Drawing.Color.Fuchsia;
+            series6.Legend = "Legend1";
+            series6.Name = "SeriesMz";
+            series7.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series7.Color = System.Drawing.Color.Aqua;
+            series7.Legend = "Legend1";
+            series7.Name = "SeriesFx_Off";
+            series8.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series8.Color = System.Drawing.Color.Lime;
+            series8.Legend = "Legend1";
+            series8.Name = "SeriesFy_Off";
+            series9.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series9.Color = System.Drawing.Color.Fuchsia;
+            series9.Legend = "Legend1";
+            series9.Name = "SeriesFz_Off";
+            series10.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series10.Color = System.Drawing.Color.Blue;
+            series10.Legend = "Legend1";
+            series10.Name = "SeriesMx_Off";
+            series11.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series11.Color = System.Drawing.Color.Green;
+            series11.Legend = "Legend1";
+            series11.Name = "SeriesMy_Off";
+            series12.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series12.Color = System.Drawing.Color.Red;
+            series12.Legend = "Legend1";
+            series12.Name = "SeriesMz_Off";
+            this.PowerDataChart.Series.Add(series1);
+            this.PowerDataChart.Series.Add(series2);
+            this.PowerDataChart.Series.Add(series3);
+            this.PowerDataChart.Series.Add(series4);
+            this.PowerDataChart.Series.Add(series5);
+            this.PowerDataChart.Series.Add(series6);
+            this.PowerDataChart.Series.Add(series7);
+            this.PowerDataChart.Series.Add(series8);
+            this.PowerDataChart.Series.Add(series9);
+            this.PowerDataChart.Series.Add(series10);
+            this.PowerDataChart.Series.Add(series11);
+            this.PowerDataChart.Series.Add(series12);
+            this.PowerDataChart.Size = new System.Drawing.Size(482, 318);
             this.PowerDataChart.TabIndex = 1;
             // 
             // oneAddBtn
             // 
-            this.oneAddBtn.Location = new System.Drawing.Point(676, 24);
+            this.oneAddBtn.Location = new System.Drawing.Point(507, 19);
+            this.oneAddBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.oneAddBtn.Name = "oneAddBtn";
-            this.oneAddBtn.Size = new System.Drawing.Size(75, 58);
+            this.oneAddBtn.Size = new System.Drawing.Size(56, 46);
             this.oneAddBtn.TabIndex = 2;
             this.oneAddBtn.Text = "One";
             this.oneAddBtn.UseVisualStyleBackColor = true;
@@ -208,9 +209,10 @@ namespace ChartAutoScroll
             // 
             // yIntervalBtn
             // 
-            this.yIntervalBtn.Location = new System.Drawing.Point(757, 24);
+            this.yIntervalBtn.Location = new System.Drawing.Point(568, 19);
+            this.yIntervalBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.yIntervalBtn.Name = "yIntervalBtn";
-            this.yIntervalBtn.Size = new System.Drawing.Size(75, 58);
+            this.yIntervalBtn.Size = new System.Drawing.Size(56, 46);
             this.yIntervalBtn.TabIndex = 3;
             this.yIntervalBtn.Text = "Yごと";
             this.yIntervalBtn.UseVisualStyleBackColor = true;
@@ -218,9 +220,10 @@ namespace ChartAutoScroll
             // 
             // yRangeBtn
             // 
-            this.yRangeBtn.Location = new System.Drawing.Point(852, 24);
+            this.yRangeBtn.Location = new System.Drawing.Point(639, 19);
+            this.yRangeBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.yRangeBtn.Name = "yRangeBtn";
-            this.yRangeBtn.Size = new System.Drawing.Size(73, 58);
+            this.yRangeBtn.Size = new System.Drawing.Size(55, 46);
             this.yRangeBtn.TabIndex = 6;
             this.yRangeBtn.Text = "Yレンジ";
             this.yRangeBtn.UseVisualStyleBackColor = true;
@@ -230,18 +233,20 @@ namespace ChartAutoScroll
             // 
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(689, 189);
+            this.dataGridView1.Location = new System.Drawing.Point(517, 151);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(193, 263);
+            this.dataGridView1.Size = new System.Drawing.Size(145, 210);
             this.dataGridView1.TabIndex = 7;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(676, 102);
+            this.button4.Location = new System.Drawing.Point(507, 82);
+            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 65);
+            this.button4.Size = new System.Drawing.Size(56, 52);
             this.button4.TabIndex = 8;
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
@@ -249,9 +254,10 @@ namespace ChartAutoScroll
             // 
             // clearBtn
             // 
-            this.clearBtn.Location = new System.Drawing.Point(756, 106);
+            this.clearBtn.Location = new System.Drawing.Point(567, 85);
+            this.clearBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(75, 65);
+            this.clearBtn.Size = new System.Drawing.Size(56, 52);
             this.clearBtn.TabIndex = 9;
             this.clearBtn.Text = "clear";
             this.clearBtn.UseVisualStyleBackColor = true;
@@ -259,24 +265,26 @@ namespace ChartAutoScroll
             // 
             // hScrollBar1
             // 
-            this.hScrollBar1.Location = new System.Drawing.Point(12, 442);
+            this.hScrollBar1.Location = new System.Drawing.Point(9, 354);
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(643, 21);
+            this.hScrollBar1.Size = new System.Drawing.Size(482, 21);
             this.hScrollBar1.TabIndex = 10;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.HScrollBar1_Scroll);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(689, 483);
+            this.textBox1.Location = new System.Drawing.Point(517, 386);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(184, 22);
+            this.textBox1.Size = new System.Drawing.Size(139, 19);
             this.textBox1.TabIndex = 11;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(689, 511);
+            this.textBox2.Location = new System.Drawing.Point(517, 409);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(184, 22);
+            this.textBox2.Size = new System.Drawing.Size(139, 19);
             this.textBox2.TabIndex = 11;
             // 
             // timer1
@@ -287,9 +295,10 @@ namespace ChartAutoScroll
             // 
             this.chartCbx.AutoSize = true;
             this.chartCbx.Font = new System.Drawing.Font("メイリオ", 9F);
-            this.chartCbx.Location = new System.Drawing.Point(427, 466);
+            this.chartCbx.Location = new System.Drawing.Point(320, 373);
+            this.chartCbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chartCbx.Name = "chartCbx";
-            this.chartCbx.Size = new System.Drawing.Size(108, 27);
+            this.chartCbx.Size = new System.Drawing.Size(88, 22);
             this.chartCbx.TabIndex = 12;
             this.chartCbx.Text = "Auto Satrt";
             this.chartCbx.UseVisualStyleBackColor = true;
@@ -299,9 +308,10 @@ namespace ChartAutoScroll
             // 
             this.xRangeCmb.Font = new System.Drawing.Font("メイリオ", 9F);
             this.xRangeCmb.FormattingEnabled = true;
-            this.xRangeCmb.Location = new System.Drawing.Point(244, 466);
+            this.xRangeCmb.Location = new System.Drawing.Point(183, 373);
+            this.xRangeCmb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.xRangeCmb.Name = "xRangeCmb";
-            this.xRangeCmb.Size = new System.Drawing.Size(121, 31);
+            this.xRangeCmb.Size = new System.Drawing.Size(92, 26);
             this.xRangeCmb.TabIndex = 13;
             this.xRangeCmb.SelectedIndexChanged += new System.EventHandler(this.XRangeCmb_SelectedIndexChanged);
             // 
@@ -309,10 +319,10 @@ namespace ChartAutoScroll
             // 
             this.MzChk.AutoSize = true;
             this.MzChk.ForeColor = System.Drawing.Color.Fuchsia;
-            this.MzChk.Location = new System.Drawing.Point(276, 13);
-            this.MzChk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MzChk.Location = new System.Drawing.Point(207, 10);
+            this.MzChk.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MzChk.Name = "MzChk";
-            this.MzChk.Size = new System.Drawing.Size(47, 19);
+            this.MzChk.Size = new System.Drawing.Size(38, 16);
             this.MzChk.TabIndex = 57;
             this.MzChk.Text = "Mz";
             this.MzChk.UseVisualStyleBackColor = true;
@@ -322,10 +332,10 @@ namespace ChartAutoScroll
             // 
             this.MyChk.AutoSize = true;
             this.MyChk.ForeColor = System.Drawing.Color.Lime;
-            this.MyChk.Location = new System.Drawing.Point(226, 13);
-            this.MyChk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MyChk.Location = new System.Drawing.Point(170, 10);
+            this.MyChk.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MyChk.Name = "MyChk";
-            this.MyChk.Size = new System.Drawing.Size(47, 19);
+            this.MyChk.Size = new System.Drawing.Size(39, 16);
             this.MyChk.TabIndex = 56;
             this.MyChk.Text = "My";
             this.MyChk.UseVisualStyleBackColor = true;
@@ -335,10 +345,10 @@ namespace ChartAutoScroll
             // 
             this.MxChk.AutoSize = true;
             this.MxChk.ForeColor = System.Drawing.Color.Aqua;
-            this.MxChk.Location = new System.Drawing.Point(176, 13);
-            this.MxChk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MxChk.Location = new System.Drawing.Point(132, 10);
+            this.MxChk.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MxChk.Name = "MxChk";
-            this.MxChk.Size = new System.Drawing.Size(47, 19);
+            this.MxChk.Size = new System.Drawing.Size(39, 16);
             this.MxChk.TabIndex = 55;
             this.MxChk.Text = "Mx";
             this.MxChk.UseVisualStyleBackColor = true;
@@ -348,10 +358,10 @@ namespace ChartAutoScroll
             // 
             this.FzChk.AutoSize = true;
             this.FzChk.ForeColor = System.Drawing.Color.Red;
-            this.FzChk.Location = new System.Drawing.Point(126, 13);
-            this.FzChk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.FzChk.Location = new System.Drawing.Point(94, 10);
+            this.FzChk.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.FzChk.Name = "FzChk";
-            this.FzChk.Size = new System.Drawing.Size(44, 19);
+            this.FzChk.Size = new System.Drawing.Size(36, 16);
             this.FzChk.TabIndex = 54;
             this.FzChk.Text = "Fz";
             this.FzChk.UseVisualStyleBackColor = true;
@@ -363,10 +373,10 @@ namespace ChartAutoScroll
             this.FyChk.Checked = true;
             this.FyChk.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FyChk.ForeColor = System.Drawing.Color.Green;
-            this.FyChk.Location = new System.Drawing.Point(76, 13);
-            this.FyChk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.FyChk.Location = new System.Drawing.Point(57, 10);
+            this.FyChk.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.FyChk.Name = "FyChk";
-            this.FyChk.Size = new System.Drawing.Size(44, 19);
+            this.FyChk.Size = new System.Drawing.Size(37, 16);
             this.FyChk.TabIndex = 53;
             this.FyChk.Text = "Fy";
             this.FyChk.UseVisualStyleBackColor = true;
@@ -378,10 +388,10 @@ namespace ChartAutoScroll
             this.FxChk.Checked = true;
             this.FxChk.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FxChk.ForeColor = System.Drawing.Color.Blue;
-            this.FxChk.Location = new System.Drawing.Point(25, 13);
-            this.FxChk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.FxChk.Location = new System.Drawing.Point(19, 10);
+            this.FxChk.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.FxChk.Name = "FxChk";
-            this.FxChk.Size = new System.Drawing.Size(44, 19);
+            this.FxChk.Size = new System.Drawing.Size(37, 16);
             this.FxChk.TabIndex = 52;
             this.FxChk.Text = "Fx";
             this.FxChk.UseVisualStyleBackColor = true;
@@ -389,9 +399,9 @@ namespace ChartAutoScroll
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 581);
+            this.ClientSize = new System.Drawing.Size(713, 465);
             this.Controls.Add(this.MzChk);
             this.Controls.Add(this.MyChk);
             this.Controls.Add(this.MxChk);
@@ -410,6 +420,7 @@ namespace ChartAutoScroll
             this.Controls.Add(this.yIntervalBtn);
             this.Controls.Add(this.oneAddBtn);
             this.Controls.Add(this.PowerDataChart);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
