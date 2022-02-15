@@ -44,7 +44,7 @@ namespace ChartAutoScroll
             System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.PowerDataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.Graph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.oneAddBtn = new System.Windows.Forms.Button();
             this.yIntervalBtn = new System.Windows.Forms.Button();
             this.yRangeBtn = new System.Windows.Forms.Button();
@@ -63,15 +63,16 @@ namespace ChartAutoScroll
             this.FzChk = new System.Windows.Forms.CheckBox();
             this.FyChk = new System.Windows.Forms.CheckBox();
             this.FxChk = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.PowerDataChart)).BeginInit();
+            this.colorBtn = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.Graph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // PowerDataChart
+            // Graph
             // 
-            this.PowerDataChart.BackColor = System.Drawing.Color.Black;
-            this.PowerDataChart.BorderlineColor = System.Drawing.Color.Black;
-            this.PowerDataChart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            this.Graph.BackColor = System.Drawing.Color.Black;
+            this.Graph.BorderlineColor = System.Drawing.Color.Black;
+            this.Graph.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
             chartArea1.AxisX.InterlacedColor = System.Drawing.Color.White;
             chartArea1.AxisX.Interval = 1D;
             chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
@@ -107,14 +108,14 @@ namespace ChartAutoScroll
             chartArea1.BackColor = System.Drawing.Color.Black;
             chartArea1.BorderColor = System.Drawing.Color.White;
             chartArea1.Name = "ChartArea1";
-            this.PowerDataChart.ChartAreas.Add(chartArea1);
+            this.Graph.ChartAreas.Add(chartArea1);
             legend1.BackColor = System.Drawing.Color.White;
             legend1.Enabled = false;
             legend1.Name = "Legend1";
-            this.PowerDataChart.Legends.Add(legend1);
-            this.PowerDataChart.Location = new System.Drawing.Point(9, 32);
-            this.PowerDataChart.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.PowerDataChart.Name = "PowerDataChart";
+            this.Graph.Legends.Add(legend1);
+            this.Graph.Location = new System.Drawing.Point(9, 32);
+            this.Graph.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Graph.Name = "Graph";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
             series1.Color = System.Drawing.Color.Blue;
@@ -181,20 +182,20 @@ namespace ChartAutoScroll
             series12.Color = System.Drawing.Color.Red;
             series12.Legend = "Legend1";
             series12.Name = "SeriesMz_Off";
-            this.PowerDataChart.Series.Add(series1);
-            this.PowerDataChart.Series.Add(series2);
-            this.PowerDataChart.Series.Add(series3);
-            this.PowerDataChart.Series.Add(series4);
-            this.PowerDataChart.Series.Add(series5);
-            this.PowerDataChart.Series.Add(series6);
-            this.PowerDataChart.Series.Add(series7);
-            this.PowerDataChart.Series.Add(series8);
-            this.PowerDataChart.Series.Add(series9);
-            this.PowerDataChart.Series.Add(series10);
-            this.PowerDataChart.Series.Add(series11);
-            this.PowerDataChart.Series.Add(series12);
-            this.PowerDataChart.Size = new System.Drawing.Size(482, 318);
-            this.PowerDataChart.TabIndex = 1;
+            this.Graph.Series.Add(series1);
+            this.Graph.Series.Add(series2);
+            this.Graph.Series.Add(series3);
+            this.Graph.Series.Add(series4);
+            this.Graph.Series.Add(series5);
+            this.Graph.Series.Add(series6);
+            this.Graph.Series.Add(series7);
+            this.Graph.Series.Add(series8);
+            this.Graph.Series.Add(series9);
+            this.Graph.Series.Add(series10);
+            this.Graph.Series.Add(series11);
+            this.Graph.Series.Add(series12);
+            this.Graph.Size = new System.Drawing.Size(482, 318);
+            this.Graph.TabIndex = 1;
             // 
             // oneAddBtn
             // 
@@ -254,7 +255,7 @@ namespace ChartAutoScroll
             // 
             // clearBtn
             // 
-            this.clearBtn.Location = new System.Drawing.Point(567, 85);
+            this.clearBtn.Location = new System.Drawing.Point(567, 82);
             this.clearBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.clearBtn.Name = "clearBtn";
             this.clearBtn.Size = new System.Drawing.Size(56, 52);
@@ -397,11 +398,23 @@ namespace ChartAutoScroll
             this.FxChk.UseVisualStyleBackColor = true;
             this.FxChk.CheckedChanged += new System.EventHandler(this.FxChk_CheckedChanged);
             // 
+            // colorBtn
+            // 
+            this.colorBtn.Location = new System.Drawing.Point(639, 82);
+            this.colorBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.colorBtn.Name = "colorBtn";
+            this.colorBtn.Size = new System.Drawing.Size(56, 52);
+            this.colorBtn.TabIndex = 58;
+            this.colorBtn.Text = "color";
+            this.colorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn.Click += new System.EventHandler(this.ColorBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 465);
+            this.Controls.Add(this.colorBtn);
             this.Controls.Add(this.MzChk);
             this.Controls.Add(this.MyChk);
             this.Controls.Add(this.MxChk);
@@ -419,12 +432,12 @@ namespace ChartAutoScroll
             this.Controls.Add(this.yRangeBtn);
             this.Controls.Add(this.yIntervalBtn);
             this.Controls.Add(this.oneAddBtn);
-            this.Controls.Add(this.PowerDataChart);
+            this.Controls.Add(this.Graph);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.PowerDataChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Graph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -433,7 +446,7 @@ namespace ChartAutoScroll
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart PowerDataChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart Graph;
         private System.Windows.Forms.Button oneAddBtn;
         private System.Windows.Forms.Button yIntervalBtn;
         private System.Windows.Forms.Button yRangeBtn;
@@ -452,6 +465,7 @@ namespace ChartAutoScroll
         private System.Windows.Forms.CheckBox FzChk;
         private System.Windows.Forms.CheckBox FyChk;
         private System.Windows.Forms.CheckBox FxChk;
+        private System.Windows.Forms.Button colorBtn;
     }
 }
 
