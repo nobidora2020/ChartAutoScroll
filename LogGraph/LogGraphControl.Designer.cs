@@ -123,7 +123,7 @@ namespace LogGraph
             this.TrackBarOffset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.TrackBarOffset.LargeChange = 2;
             this.TrackBarOffset.Location = new System.Drawing.Point(792, 33);
-            this.TrackBarOffset.Maximum = 11;
+            this.TrackBarOffset.Maximum = 14;
             this.TrackBarOffset.Name = "TrackBarOffset";
             this.TrackBarOffset.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.TrackBarOffset.Size = new System.Drawing.Size(44, 412);

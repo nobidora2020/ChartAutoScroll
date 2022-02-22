@@ -56,6 +56,14 @@ namespace LogGraph
 			//	c.AxisY.LabelStyle.Format = "f2";
 			//}
 
+
+			TrackBarScale.Value = 5;
+			TrackBarOffset.Value = 5;
+
+			AxisScaleLabel.Text = scaleList[TrackBarScale.Value].ToString();
+			AxisOffsetYLabel.Text = offsetList[TrackBarOffset.Value].ToString();
+
+
 			UpdateTrackBar();
 			this.Refresh();
 		}
@@ -138,10 +146,7 @@ namespace LogGraph
 			c.AxisY.Maximum += ajust;
 			c.AxisY.Minimum += ajust;
 
-			TrackBarScale.Value = 5;
-			TrackBarOffset.Value = 5;
 
-			UpdateTrackBar();
 			this.Refresh();
 #endif
 
