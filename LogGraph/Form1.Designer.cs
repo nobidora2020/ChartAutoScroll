@@ -28,8 +28,8 @@ namespace LogGraph
         private void InitializeComponent() {
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.LoGraphFx = new LogGraph.LogGraphControl();
             this.button1 = new System.Windows.Forms.Button();
+            this.LoGraphFx = new LogGraph.LogGraphControl();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,8 +49,8 @@ namespace LogGraph
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.18323F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.81677F));
-            this.tableLayoutPanel1.Controls.Add(this.LoGraphFx, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.button1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.LoGraphFx, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
@@ -61,16 +61,6 @@ namespace LogGraph
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1097, 559);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // LoGraphFx
-            // 
-            this.LoGraphFx.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.LoGraphFx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoGraphFx.Location = new System.Drawing.Point(2, 3);
-            this.LoGraphFx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.LoGraphFx.Name = "LoGraphFx";
-            this.LoGraphFx.Size = new System.Drawing.Size(733, 365);
-            this.LoGraphFx.TabIndex = 0;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(740, 3);
@@ -79,7 +69,17 @@ namespace LogGraph
             this.button1.TabIndex = 1;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // LoGraphFx
+            // 
+            this.LoGraphFx.BackColor = System.Drawing.SystemColors.Window;
+            this.LoGraphFx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoGraphFx.Location = new System.Drawing.Point(2, 3);
+            this.LoGraphFx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.LoGraphFx.Name = "LoGraphFx";
+            this.LoGraphFx.Size = new System.Drawing.Size(733, 365);
+            this.LoGraphFx.TabIndex = 2;
             // 
             // Form1
             // 
@@ -99,8 +99,8 @@ namespace LogGraph
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private LogGraphControl LoGraphFx;
         private System.Windows.Forms.Button button1;
+        private LogGraphControl LoGraphFx;
     }
 }
 

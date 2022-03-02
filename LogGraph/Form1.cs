@@ -23,6 +23,7 @@ namespace LogGraph
 
         // リストデータ        
         private void UpdateByListData() {
+            count = 1;
             Random r = new Random(); //乱数
             var timeList = new List<double>();
             var dataList = new List<double>();
@@ -36,7 +37,7 @@ namespace LogGraph
             this.LoGraphFx.UpdateValue(timeList.ToArray(), dataList.ToArray());
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void Button1_Click(object sender, EventArgs e) {
             UpdateByListData();
         }
     }

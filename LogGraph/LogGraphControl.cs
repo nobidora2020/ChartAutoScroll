@@ -17,27 +17,26 @@ namespace LogGraph
             InitializeComponent();
         }
 		private void LogGraphControl_Load(object sender, EventArgs e) {
+			TrackBarScale.Value = 5;
+			TrackBarOffset.Value = 5;
+			TrackBarRange.Value = 5;
+			TrackBarTimer.Value = 5;
 
 			AxisScaleLabel.Text = scaleList[TrackBarScale.Value].ToString(); ;
-			AxisOffsetYLabel.Text = offsetList[TrackBarOffset.Value].ToString(); ;
-
+			AxisOffsetYLabel.Text = offsetList[TrackBarOffset.Value].ToString();
+			LabelAxisRange.Text = scaleList[TrackBarRange.Value].ToString();
+			LabelTimeOffset.Text = offsetList[TrackBarTimer.Value].ToString();
 		}
 
-
-
 		internal void UpdateValue(double[] dt, double[] data) {
-
 			// シリーズの自動生成
-			//int seriesIndex = SeriesCount - 1;
-			//if (seriesIndex > 0) {
-			//	MakeSeries();
-			//}
-			//else {
-			//	SeriesCount++;
-			//}
-
-			int seriesIndex = 0;
-
+			int seriesIndex = SeriesCount - 1;
+			if (seriesIndex > 0) {
+				MakeSeries();
+			}
+			else {
+				SeriesCount++;
+			}
 			// プロット先
 			ChartArea c = this.Graph.ChartAreas[0];
 			// X軸のプロット間隔
@@ -51,19 +50,6 @@ namespace LogGraph
 			c.AxisX.Maximum = double.NaN;
 			c.AxisY.Maximum = double.NaN;
 			c.AxisY.Minimum = double.NaN;
-
-			//if (IsMomentStatus) {
-			//	c.AxisY.LabelStyle.Format = "f2";
-			//}
-
-
-			TrackBarScale.Value = 5;
-			TrackBarOffset.Value = 5;
-
-			AxisScaleLabel.Text = scaleList[TrackBarScale.Value].ToString();
-			AxisOffsetYLabel.Text = offsetList[TrackBarOffset.Value].ToString();
-
-
 			UpdateTrackBar();
 			this.Refresh();
 		}
@@ -80,13 +66,10 @@ namespace LogGraph
 			addSeris.BorderWidth = 2;
 			addSeris.ChartArea = "ChartArea1";
 			addSeris.ChartType = SeriesChartType.FastLine;
-			//addSeris.Color = Color.Red;
 			addSeris.IsVisibleInLegend = false;
 			addSeris.Name = "Series" + SeriesCount;
-
 			addSeris.Color = ColorSeries();
 			this.Graph.Series.Add(addSeris);
-
 			SeriesCount++;
 		}
 
@@ -118,43 +101,85 @@ namespace LogGraph
 
 		// トラックバーの更新
 		private void UpdateTrackBar() {
+			UpdateYValue();
+			UpdateXVaule();
+			this.Refresh();
+		}
+
+		public int AxisScale {
+			get { return int.Parse(AxisScaleLabel.Text); }
+		}
+
+		public int AxisOffsetY {
+			get { return int.Parse(AxisOffsetYLabel.Text); }
+		}
+
+		public int AxisRange {
+			get { return int.Parse(LabelAxisRange.Text); }
+		}
+
+		public int AxisOffsetX {
+			get { return int.Parse(LabelTimeOffset.Text); }
+		}
+
+		// Y軸方向のトラックバーの更新
+		private void UpdateYValue() {
 			ChartArea c = this.Graph.ChartAreas[0];
 			var points = this.Graph.Series[0].Points;
 			if (points.Count == 0) {
 				return;
 			}
+
 			var maxYValue = points.Max(v => v.YValues[0]);  // 最大値
 			var minYValue = points.Min(v => v.YValues[0]);  // 最小値
-			MaxAndMiniValue(out maxYValue, out minYValue);  // 複数シリーズで最小最大を取得
 
-			var AxisScalea = int.Parse(AxisScaleLabel.Text);
-			var AxisOffsetY = int.Parse(AxisOffsetYLabel.Text);
+			MaxAndMiniYValue(out maxYValue, out minYValue); // 複数シリーズで最小最大を取得
 
-#if true
 			var difference = maxYValue - minYValue;         // レンジの差（表示範囲）
-			double rate = AxisScalea / 100f;                 // 倍率
+			double rate = AxisScale / 100f;                 // 倍率
 			var half = difference / 2;                      // 範囲の半分
 			var center = (maxYValue + minYValue) / 2;       // 最小と最大の中央位置
 			var sc = difference / rate;
 			// 拡大・縮小を調整
 			c.AxisY.Maximum = center + (half / rate);
 			c.AxisY.Minimum = center - (half / rate);
+			// オフセットを調整
 			double offset = AxisOffsetY / 100f;    // 倍率
 			var distance = maxYValue - (center - (half / rate));
 			var ajust = distance * offset;
-			// オフセットを調整
 			c.AxisY.Maximum += ajust;
 			c.AxisY.Minimum += ajust;
-
-
-			this.Refresh();
-#endif
-
 		}
 
+		// X軸方向のトラックバーの更新
+		private void UpdateXVaule() {
+			ChartArea c = this.Graph.ChartAreas[0];
+			var points = this.Graph.Series[0].Points;
+			if (points.Count == 0) {
+				return;
+			}
+			// x軸の値
+			var maxXValue = points.Max(v => v.XValue);      // 最大値
+			var minXValue = points.Min(v => v.XValue);      // 最小値 
+			MaxAndMiniXValue(out maxXValue, out minXValue);  // 複数シリーズで最小最大を取得
+			var difference = maxXValue - minXValue;         // レンジの差（表示範囲）
+			double rate = AxisRange / 100f;                 // 倍率
+			var half = difference / 2;                      // 範囲の半分
+			var center = (maxXValue + minXValue) / 2;       // 最小と最大の中央位置
+			var sc = difference / rate;
+			// 拡大・縮小を調整
+			c.AxisX.Maximum = center + (half / rate);
+			c.AxisX.Minimum = center - (half / rate);
+			// オフセットを調整
+			double offset = this.AxisOffsetX / 100f;    // 倍率
+			var distance = maxXValue - (center - (half / rate));
+			var ajust = distance * offset;
+			c.AxisX.Maximum += ajust;
+			c.AxisX.Minimum += ajust;
+		}
 
-		// シリーズ内で最小最大値を取得
-		private void MaxAndMiniValue(out double maxYValue, out double minYValue) {
+		// シリーズ内でY値の最小最大値を取得
+		private void MaxAndMiniYValue(out double maxYValue, out double minYValue) {
 			var maxList = new List<double>();
 			var minList = new List<double>();
 			foreach (Series pointValue in Graph.Series) {
@@ -167,7 +192,22 @@ namespace LogGraph
 			minYValue = minList.Min();
 		}
 
-        private void TrackBarScale_Scroll(object sender, EventArgs e) {
+		// シリーズ内でX値の最小最大値を取得
+		private void MaxAndMiniXValue(out double maxXValue, out double minXValue) {
+			var maxList = new List<double>();
+			var minList = new List<double>();
+			foreach (Series pointValue in Graph.Series) {
+				var maxY = pointValue.Points.Max(v => v.XValue);  // 最大値
+				var minY = pointValue.Points.Min(v => v.XValue);  // 最大値
+				maxList.Add(maxY);
+				minList.Add(minY);
+			}
+			maxXValue = maxList.Max();
+			minXValue = minList.Min();
+		}
+
+
+		private void TrackBarScale_Scroll(object sender, EventArgs e) {
 			var v = ((TrackBar)sender);
 			AxisScaleLabel.Text = scaleList[v.Value].ToString();
 			UpdateTrackBar();
@@ -179,15 +219,23 @@ namespace LogGraph
 			UpdateTrackBar();
 		}
 
+        private void TrackBarRange_Scroll(object sender, EventArgs e) {
+			var v = ((TrackBar)sender);
+			LabelAxisRange.Text = scaleList[v.Value].ToString();
+			UpdateTrackBar();
+		}
 
+        private void TrackBarTimer_Scroll(object sender, EventArgs e) {
+			var v = ((TrackBar)sender);
+			LabelTimeOffset.Text = offsetList[v.Value].ToString();
+			UpdateTrackBar();
+		}
 
 		int[] scaleList = new int[] {
 			1, 5, 10, 25, 50, 75, 100, 200, 400, 800, 1600, 3200, 6400 };
 
-
 		int[] offsetList = new int[] {
 			 -100, -75, -50, -25, -10, -5, -1, 0, 1, 5, 10, 25, 50, 75, 100 };
 
-       
     }
 }
