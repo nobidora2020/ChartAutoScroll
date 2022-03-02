@@ -13,7 +13,22 @@ namespace LogGraph
 {
     public partial class LogGraphControl : UserControl
     {
-        public LogGraphControl() {
+
+		public int AxisScale {
+			get { return int.Parse(AxisScaleLabel.Text); }
+		}
+		public int AxisOffsetY {
+			get { return int.Parse(AxisOffsetYLabel.Text); }
+		}
+		public int AxisRange {
+			get { return int.Parse(LabelAxisRange.Text); }
+		}
+		public int AxisOffsetX {
+			get { return int.Parse(LabelTimeOffset.Text); }
+		}
+
+
+		public LogGraphControl() {
             InitializeComponent();
         }
 		private void LogGraphControl_Load(object sender, EventArgs e) {
@@ -106,21 +121,7 @@ namespace LogGraph
 			this.Refresh();
 		}
 
-		public int AxisScale {
-			get { return int.Parse(AxisScaleLabel.Text); }
-		}
 
-		public int AxisOffsetY {
-			get { return int.Parse(AxisOffsetYLabel.Text); }
-		}
-
-		public int AxisRange {
-			get { return int.Parse(LabelAxisRange.Text); }
-		}
-
-		public int AxisOffsetX {
-			get { return int.Parse(LabelTimeOffset.Text); }
-		}
 
 		// Y軸方向のトラックバーの更新
 		private void UpdateYValue() {
@@ -133,13 +134,12 @@ namespace LogGraph
 			var maxYValue = points.Max(v => v.YValues[0]);  // 最大値
 			var minYValue = points.Min(v => v.YValues[0]);  // 最小値
 
-			MaxAndMiniYValue(out maxYValue, out minYValue); // 複数シリーズで最小最大を取得
+			MaxAndMiniValue(out maxYValue, out minYValue, XOrYAxisType. YAxis); // 複数シリーズで最小最大を取得
 
 			var difference = maxYValue - minYValue;         // レンジの差（表示範囲）
 			double rate = AxisScale / 100f;                 // 倍率
 			var half = difference / 2;                      // 範囲の半分
 			var center = (maxYValue + minYValue) / 2;       // 最小と最大の中央位置
-			var sc = difference / rate;
 			// 拡大・縮小を調整
 			c.AxisY.Maximum = center + (half / rate);
 			c.AxisY.Minimum = center - (half / rate);
@@ -161,12 +161,11 @@ namespace LogGraph
 			// x軸の値
 			var maxXValue = points.Max(v => v.XValue);      // 最大値
 			var minXValue = points.Min(v => v.XValue);      // 最小値 
-			MaxAndMiniXValue(out maxXValue, out minXValue);  // 複数シリーズで最小最大を取得
+			MaxAndMiniValue(out maxXValue, out minXValue, XOrYAxisType.XAxis);  // 複数シリーズで最小最大を取得
 			var difference = maxXValue - minXValue;         // レンジの差（表示範囲）
 			double rate = AxisRange / 100f;                 // 倍率
 			var half = difference / 2;                      // 範囲の半分
 			var center = (maxXValue + minXValue) / 2;       // 最小と最大の中央位置
-			var sc = difference / rate;
 			// 拡大・縮小を調整
 			c.AxisX.Maximum = center + (half / rate);
 			c.AxisX.Minimum = center - (half / rate);
@@ -179,35 +178,29 @@ namespace LogGraph
 		}
 
 		// シリーズ内でY値の最小最大値を取得
-		private void MaxAndMiniYValue(out double maxYValue, out double minYValue) {
+		private void MaxAndMiniValue(out double maxYValue, out double minYValue, XOrYAxisType type) {
 			var maxList = new List<double>();
 			var minList = new List<double>();
 			foreach (Series pointValue in Graph.Series) {
-				var maxY = pointValue.Points.Max(v => v.YValues[0]);  // 最大値
-				var minY = pointValue.Points.Min(v => v.YValues[0]);  // 最大値
-				maxList.Add(maxY);
-				minList.Add(minY);
+				bool isXAxis = type == XOrYAxisType.XAxis;
+				var max = isXAxis ? pointValue.Points.Max(v => v.XValue) : pointValue.Points.Max(v => v.YValues[0]);
+				var min = isXAxis ? pointValue.Points.Min(v => v.XValue) : pointValue.Points.Min(v => v.YValues[0]);
+				maxList.Add(max);
+				minList.Add(min);
 			}
 			maxYValue = maxList.Max();
 			minYValue = minList.Min();
 		}
 
-		// シリーズ内でX値の最小最大値を取得
-		private void MaxAndMiniXValue(out double maxXValue, out double minXValue) {
-			var maxList = new List<double>();
-			var minList = new List<double>();
-			foreach (Series pointValue in Graph.Series) {
-				var maxY = pointValue.Points.Max(v => v.XValue);  // 最大値
-				var minY = pointValue.Points.Min(v => v.XValue);  // 最大値
-				maxList.Add(maxY);
-				minList.Add(minY);
-			}
-			maxXValue = maxList.Max();
-			minXValue = minList.Min();
-		}
+        // XY軸の種類
+        enum XOrYAxisType
+        {
+            XAxis,
+            YAxis
+        }
 
 
-		private void TrackBarScale_Scroll(object sender, EventArgs e) {
+        private void TrackBarScale_Scroll(object sender, EventArgs e) {
 			var v = ((TrackBar)sender);
 			AxisScaleLabel.Text = scaleList[v.Value].ToString();
 			UpdateTrackBar();
