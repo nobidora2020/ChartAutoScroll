@@ -246,15 +246,13 @@ namespace LogGraph
 		// シリーズを非表示
 		public void HideSeries(int index) {
             this.Graph.Series[index].Color = Color.Transparent;
-			var c = this.Graph.Series[index].Color;
-			var g = this.Graph.Series[index];
-			foreach (var item in this.Graph.Series) {
-				var v = item.Color;
-			}
-
-
-			//this.Graph.Series[index].BorderColor = Color.Transparent;
 		}
+
+
+		public void ShowSeries(int index) {
+			this.Graph.Series[index].Color = ColorSeries(index);
+		}
+
 
 		public Color ColorSeries(int index) {
 			var count = index + 1;
