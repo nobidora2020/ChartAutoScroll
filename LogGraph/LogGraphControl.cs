@@ -13,7 +13,6 @@ namespace LogGraph
 {
     public partial class LogGraphControl : UserControl
     {
-
 		public int AxisScale {
 			get { return int.Parse(AxisScaleLabel.Text); }
 		}
@@ -26,7 +25,6 @@ namespace LogGraph
 		public int AxisOffsetX {
 			get { return int.Parse(LabelTimeOffset.Text); }
 		}
-
 
 		public LogGraphControl() {
             InitializeComponent();
@@ -74,7 +72,6 @@ namespace LogGraph
 		/// </summary>
 		int SeriesCount = 1;
 
-
 		// シリーズの生成
 		public void MakeSeries() {
 			Series addSeris = new Series();
@@ -121,8 +118,6 @@ namespace LogGraph
 			this.Refresh();
 		}
 
-
-
 		// Y軸方向のトラックバーの更新
 		private void UpdateYValue() {
 			ChartArea c = this.Graph.ChartAreas[0];
@@ -130,12 +125,10 @@ namespace LogGraph
 			if (points.Count == 0) {
 				return;
 			}
-
 			var maxYValue = points.Max(v => v.YValues[0]);  // 最大値
 			var minYValue = points.Min(v => v.YValues[0]);  // 最小値
-
-			MaxAndMiniValue(out maxYValue, out minYValue, XOrYAxisType. YAxis); // 複数シリーズで最小最大を取得
-
+			// 複数シリーズで最小最大を取得
+			MaxAndMiniValue(out maxYValue, out minYValue, XOrYAxisType. YAxis); 
 			var difference = maxYValue - minYValue;         // レンジの差（表示範囲）
 			double rate = AxisScale / 100f;                 // 倍率
 			var half = difference / 2;                      // 範囲の半分
@@ -161,7 +154,8 @@ namespace LogGraph
 			// x軸の値
 			var maxXValue = points.Max(v => v.XValue);      // 最大値
 			var minXValue = points.Min(v => v.XValue);      // 最小値 
-			MaxAndMiniValue(out maxXValue, out minXValue, XOrYAxisType.XAxis);  // 複数シリーズで最小最大を取得
+			// 複数シリーズで最小最大を取得
+			MaxAndMiniValue(out maxXValue, out minXValue, XOrYAxisType.XAxis);  
 			var difference = maxXValue - minXValue;         // レンジの差（表示範囲）
 			double rate = AxisRange / 100f;                 // 倍率
 			var half = difference / 2;                      // 範囲の半分
@@ -230,5 +224,21 @@ namespace LogGraph
 		int[] offsetList = new int[] {
 			 -100, -75, -50, -25, -10, -5, -1, 0, 1, 5, 10, 25, 50, 75, 100 };
 
-    }
+		// グラフを削除する
+		public string[] RemoveSeries(out string[] name, out Color[] color) {
+			int seriesIndex = SeriesCount - 1;
+			var list = new List<string>();
+			var listColor = new List<Color>();
+            foreach (var item in this.Graph.Series) {
+				list.Add(item.Name);
+				listColor.Add(item.Color);
+            }
+			name = list.ToArray();
+			color = listColor.ToArray();
+			//this.Graph.Series[seriesIndex-1].Color = Color.Transparent;
+			//this.Graph.Series[seriesIndex-1].BorderColor = Color.Transparent;
+			return list.ToArray();
+		}
+
+	}
 }
