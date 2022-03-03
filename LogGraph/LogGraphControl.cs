@@ -86,7 +86,7 @@ namespace LogGraph
 		}
 
 		// シリーズごとにグラフの色を変える
-		public Color ColorSeries() {
+		private Color ColorSeries() {
 			var color = Color.Red;
 			switch (SeriesCount % 6) {
 				case 0:
@@ -224,21 +224,64 @@ namespace LogGraph
 		int[] offsetList = new int[] {
 			 -100, -75, -50, -25, -10, -5, -1, 0, 1, 5, 10, 25, 50, 75, 100 };
 
-		// グラフを削除する
-		public string[] RemoveSeries(out string[] name, out Color[] color) {
+		// シリーズの情報を取得
+		public void InfoSeries(out string[] name, out Color[] color, out string[] colorName) {
 			int seriesIndex = SeriesCount - 1;
 			var list = new List<string>();
 			var listColor = new List<Color>();
-            foreach (var item in this.Graph.Series) {
+			var cName = new List<string>();
+
+			foreach (var item in this.Graph.Series) {
 				list.Add(item.Name);
 				listColor.Add(item.Color);
+				cName.Add(item.Color.ToString());
             }
 			name = list.ToArray();
 			color = listColor.ToArray();
+			colorName = cName.ToArray();
+
 			//this.Graph.Series[seriesIndex-1].Color = Color.Transparent;
 			//this.Graph.Series[seriesIndex-1].BorderColor = Color.Transparent;
-			return list.ToArray();
 		}
+		// シリーズを非表示
+		public void HideSeries(int index) {
+            this.Graph.Series[index].Color = Color.Transparent;
+			var c = this.Graph.Series[index].Color;
+			var g = this.Graph.Series[index];
+			foreach (var item in this.Graph.Series) {
+				var v = item.Color;
+			}
+
+
+			//this.Graph.Series[index].BorderColor = Color.Transparent;
+		}
+
+		public Color ColorSeries(int index) {
+			var count = index + 1;
+			var color = Color.Red;
+			switch (count % 6) {
+				case 0:
+					color = Color.Magenta;
+					break;
+				case 1:
+					color = Color.CornflowerBlue;
+					break;
+				case 2:
+					color = Color.LightGreen;
+					break;
+				case 3:
+					color = Color.Red;
+					break;
+				case 4:
+					color = Color.Cyan;
+					break;
+				case 5:
+					color = Color.Lime;
+					break;
+			}
+			return color;
+		}
+
 
 	}
 }
