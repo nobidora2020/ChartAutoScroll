@@ -104,21 +104,18 @@ namespace LogGraph
 
         private void DgvSeries_CellContentClick(object sender, DataGridViewCellEventArgs e)  {
             this.ColumnCheck.ReadOnly = true;
-            if (DgvSeries.Rows.Count > 1) {
-                UpdateGraphSeries();
-            CheckInfo();
-            }
+            UpdateGraphSeries();
             this.ColumnCheck.ReadOnly = false;
         }
 
         private void DgvSeries_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e) {
             this.ColumnCheck.ReadOnly = true;
-            if (DgvSeries.Rows.Count > 1) {
-                UpdateGraphSeries();
+            UpdateGraphSeries();
             CheckInfo();
-            }
             this.ColumnCheck.ReadOnly = false;
         }
+
+
         private void CheckInfo() {
             listBox2.Items.Add(DateTime.Now + ":one" + DateTime.Now.Millisecond);
             listBox2.SelectedIndex = listBox2.Items.Count - 1; // 最終行にカーソル移動
