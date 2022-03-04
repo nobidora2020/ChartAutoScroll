@@ -28,20 +28,20 @@ namespace LogGraph
         private void InitializeComponent() {
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.LoGraphFx = new LogGraph.LogGraphControl();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.DgvSeries = new System.Windows.Forms.DataGridView();
-            this.ColumnIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listBox2 = new System.Windows.Forms.ListBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.LoGraphFx = new LogGraph.LogGraphControl();
+            this.button1 = new System.Windows.Forms.Button();
+            this.ColumnIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -76,6 +76,16 @@ namespace LogGraph
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.49374F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1142, 583);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // LoGraphFx
+            // 
+            this.LoGraphFx.BackColor = System.Drawing.SystemColors.Window;
+            this.LoGraphFx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoGraphFx.Location = new System.Drawing.Point(2, 3);
+            this.LoGraphFx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.LoGraphFx.Name = "LoGraphFx";
+            this.LoGraphFx.Size = new System.Drawing.Size(706, 364);
+            this.LoGraphFx.TabIndex = 2;
             // 
             // panel2
             // 
@@ -116,27 +126,6 @@ namespace LogGraph
             this.DgvSeries.TabIndex = 0;
             this.DgvSeries.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSeries_CellContentClick);
             this.DgvSeries.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSeries_CellContentDoubleClick);
-            this.DgvSeries.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSeries_CellValueChanged);
-            // 
-            // ColumnIndex
-            // 
-            this.ColumnIndex.HeaderText = "#";
-            this.ColumnIndex.Name = "ColumnIndex";
-            this.ColumnIndex.ReadOnly = true;
-            this.ColumnIndex.Width = 43;
-            // 
-            // ColumnColor
-            // 
-            this.ColumnColor.HeaderText = "色";
-            this.ColumnColor.Name = "ColumnColor";
-            this.ColumnColor.ReadOnly = true;
-            this.ColumnColor.Width = 45;
-            // 
-            // ColumnCheck
-            // 
-            this.ColumnCheck.HeaderText = "表示/非表示";
-            this.ColumnCheck.Name = "ColumnCheck";
-            this.ColumnCheck.Width = 79;
             // 
             // panel3
             // 
@@ -150,6 +139,15 @@ namespace LogGraph
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(671, 198);
             this.panel3.TabIndex = 4;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 18;
+            this.listBox2.Location = new System.Drawing.Point(234, 97);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(356, 94);
+            this.listBox2.TabIndex = 2;
             // 
             // btnUpdate
             // 
@@ -181,6 +179,16 @@ namespace LogGraph
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(9, 96);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(141, 87);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(9, 3);
@@ -191,34 +199,27 @@ namespace LogGraph
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // listBox2
+            // ColumnIndex
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 18;
-            this.listBox2.Location = new System.Drawing.Point(234, 97);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(356, 94);
-            this.listBox2.TabIndex = 2;
+            this.ColumnIndex.HeaderText = "#";
+            this.ColumnIndex.Name = "ColumnIndex";
+            this.ColumnIndex.ReadOnly = true;
+            this.ColumnIndex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnIndex.Width = 24;
             // 
-            // button4
+            // ColumnColor
             // 
-            this.button4.Location = new System.Drawing.Point(9, 96);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(141, 87);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.ColumnColor.HeaderText = "色";
+            this.ColumnColor.Name = "ColumnColor";
+            this.ColumnColor.ReadOnly = true;
+            this.ColumnColor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnColor.Width = 26;
             // 
-            // LoGraphFx
+            // ColumnCheck
             // 
-            this.LoGraphFx.BackColor = System.Drawing.SystemColors.Window;
-            this.LoGraphFx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoGraphFx.Location = new System.Drawing.Point(2, 3);
-            this.LoGraphFx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.LoGraphFx.Name = "LoGraphFx";
-            this.LoGraphFx.Size = new System.Drawing.Size(706, 364);
-            this.LoGraphFx.TabIndex = 2;
+            this.ColumnCheck.HeaderText = "表示/非表示";
+            this.ColumnCheck.Name = "ColumnCheck";
+            this.ColumnCheck.Width = 79;
             // 
             // Form1
             // 
@@ -251,11 +252,11 @@ namespace LogGraph
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnIndex;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnColor;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnCheck;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.Button button4;
     }
 }
 

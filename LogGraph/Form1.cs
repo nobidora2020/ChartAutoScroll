@@ -80,10 +80,6 @@ namespace LogGraph
         }
 
         private void UpdateGraphSeries() {
-            //DgvSeries.ReadOnly = true;
-
-            this.ColumnCheck.ReadOnly = true;
-
             listBox1.Items.Clear();
             var isCheckList = new List<bool>();
             for (int i = 0; i < DgvSeries.Rows.Count; i++) {
@@ -98,13 +94,6 @@ namespace LogGraph
                 }
             }
             isCheckSeries = isCheckList.ToArray();
-
-            this.ColumnCheck.ReadOnly = false;
-            //DgvSeries.ReadOnly = false;
-
-            //DgvSeries.Refresh();
-            //DgvSeries.Update();
-
         }
 
         private void btnUpdate_Click(object sender, EventArgs e) {
@@ -113,23 +102,26 @@ namespace LogGraph
             DgvSeries.Update();
         }
 
-
-
-
         private void DgvSeries_CellContentClick(object sender, DataGridViewCellEventArgs e)  {
             this.ColumnCheck.ReadOnly = true;
-            DgvSeries.CommitEdit(DataGridViewDataErrorContexts.Commit);
-            ChaeckStatusUpdate(DgvSeries);
             if (DgvSeries.Rows.Count > 1) {
                 UpdateGraphSeries();
-            }
-            listBox2.Items.Add(DateTime.Now +":one" + DateTime.Now.Millisecond);
-            listBox2.SelectedIndex = listBox2.Items.Count - 1; // 最終行にカーソル移動
             CheckInfo();
+            }
             this.ColumnCheck.ReadOnly = false;
         }
 
+        private void DgvSeries_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e) {
+            this.ColumnCheck.ReadOnly = true;
+            if (DgvSeries.Rows.Count > 1) {
+                UpdateGraphSeries();
+            CheckInfo();
+            }
+            this.ColumnCheck.ReadOnly = false;
+        }
         private void CheckInfo() {
+            listBox2.Items.Add(DateTime.Now + ":one" + DateTime.Now.Millisecond);
+            listBox2.SelectedIndex = listBox2.Items.Count - 1; // 最終行にカーソル移動
             listBox1.Items.Clear();
             for (int i = 0; i < DgvSeries.Rows.Count; i++) {
                 var isCheck = (bool)DgvSeries.Rows[i].Cells[2].Value;
@@ -137,48 +129,7 @@ namespace LogGraph
             }
         }
 
-        private void DgvSeries_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
-            if (DgvSeries.Rows.Count >1) {
-                //UpdateGraphSeries();
-            }
-            //MessageBox.Show("bb");
-        }
-
-        /// <summary>
-        /// チェック状態の更新
-        /// </summary>
-        /// <param name="dgv"></param>
-        private void ChaeckStatusUpdate(DataGridView dgv) {
-            //List<Point> selectedCell = new List<Point>();
-            //// 選択状態のセルを記憶
-            //foreach (DataGridViewCell c in DgvSeries.SelectedCells) {
-            //    selectedCell.Add(new Point(c.RowIndex, c.ColumnIndex));
-            //}
-            //dgv.CurrentCell = null; // セルの選択を外す(この処理がないとチェック状態が更新されない)
-            //                        // 選択状態のセルを再現
-            //for (int i = 0; i < selectedCell.Count; i++) {
-            //    if (i == 0) {
-            //        dgv.CurrentCell = this.DgvSeries[selectedCell[i].Y, selectedCell[i].X];
-            //    }
-            //    DgvSeries.Rows[selectedCell[i].X].Cells[selectedCell[i].Y].Selected = true;
-            //}
-        }
-
-
-        private void DgvSeries_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e) {
-            this.ColumnCheck.ReadOnly = true;
-            DgvSeries.CommitEdit(DataGridViewDataErrorContexts.Commit);
-            ChaeckStatusUpdate(DgvSeries);
-            if (DgvSeries.Rows.Count > 1) {
-                UpdateGraphSeries();
-            }
-            listBox2.Items.Add(DateTime.Now + ":two" + DateTime.Now.Millisecond);
-            listBox2.SelectedIndex = listBox2.Items.Count - 1; // 最終行にカーソル移動
-            CheckInfo();
-            this.ColumnCheck.ReadOnly = false;
-        }
-
-        private void button4_Click(object sender, EventArgs e) {
+        private void Button4_Click(object sender, EventArgs e) {
             CheckInfo();
         }
     }
