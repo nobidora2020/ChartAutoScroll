@@ -224,36 +224,32 @@ namespace LogGraph
 		int[] offsetList = new int[] {
 			 -100, -75, -50, -25, -10, -5, -1, 0, 1, 5, 10, 25, 50, 75, 100 };
 
+
 		// シリーズの情報を取得
 		public void InfoSeries(out string[] name, out Color[] color, out string[] colorName) {
 			int seriesIndex = SeriesCount - 1;
-			var list = new List<string>();
-			var listColor = new List<Color>();
-			var cName = new List<string>();
-
+			var nameList = new List<string>();
+			var colorList = new List<Color>();
+			var colorNameList = new List<string>();
 			foreach (var item in this.Graph.Series) {
-				list.Add(item.Name);
-				listColor.Add(item.Color);
-				cName.Add(item.Color.ToString());
+				nameList.Add(item.Name);
+				colorList.Add(item.Color);
+				colorNameList.Add(item.Color.ToString());
             }
-			name = list.ToArray();
-			color = listColor.ToArray();
-			colorName = cName.ToArray();
-
-			//this.Graph.Series[seriesIndex-1].Color = Color.Transparent;
-			//this.Graph.Series[seriesIndex-1].BorderColor = Color.Transparent;
+			name = nameList.ToArray();
+			color = colorList.ToArray();
+			colorName = colorNameList.ToArray();
 		}
+
 		// シリーズを非表示
 		public void HideSeries(int index) {
             this.Graph.Series[index].Color = Color.Transparent;
 		}
-
-
+		// シリーズを表示
 		public void ShowSeries(int index) {
 			this.Graph.Series[index].Color = ColorSeries(index);
 		}
-
-
+		// 循環色を取得
 		public Color ColorSeries(int index) {
 			var count = index + 1;
 			var color = Color.Red;

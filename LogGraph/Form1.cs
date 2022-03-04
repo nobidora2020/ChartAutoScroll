@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,7 +18,7 @@ namespace LogGraph
             InitializeComponent();
         }
         private void Form1_Load(object sender, EventArgs e) {
-            dataGridView1.AllowUserToAddRows = false;
+            DgvSeries.AllowUserToAddRows = false;
         }
 
         // リストデータ        
@@ -37,30 +38,36 @@ namespace LogGraph
         }
         private void Button1_Click(object sender, EventArgs e) {
             UpdateByListData();
+            SetSeriesToDev();
+
         }
-
-
         private void button2_Click(object sender, EventArgs e) {
-            // データを追加
+
+            SetSeriesToDev();
+        }
+        /// <summary>
+        /// グリッドビューにシリーズを設定する
+        /// </summary>
+        private void SetSeriesToDev() {
+            DgvSeries.Rows.Clear();
             LoGraphFx.InfoSeries(out string[] name, out Color[] color, out string[] colorName);
-            dataGridView1.Rows.Clear();
             for (int i = 0; i < name.Length; i++) {
                 // 行を追加
-                dataGridView1.Rows.Add(name[i], colorName[i], true);
+                int indexName = int.Parse(Regex.Replace(name[i], @"[^0-9]", "")) - 1;
+                DgvSeries.Rows.Add(indexName, colorName[i], true);
                 // チェック状態の復元
                 if (isCheckSeries != null && i < isCheckSeries.Length) {
-                    dataGridView1.Rows[i].Cells[2].Value = isCheckSeries?[i];
+                    DgvSeries.Rows[i].Cells[2].Value = isCheckSeries?[i];
                 }
                 // 実際の色を取得
                 bool itIsTransparent = color[i] == Color.Transparent; // 透明のとき
-                dataGridView1[1, i].Style.BackColor = itIsTransparent ? Color.Empty : color[i];
+                DgvSeries[1, i].Style.BackColor = itIsTransparent ? Color.Empty : color[i];
                 // インデックス番号から算出した色を取得
-                dataGridView1[1, i].Style.BackColor = LoGraphFx.ColorSeries(i);
+                DgvSeries[1, i].Style.BackColor = LoGraphFx.ColorSeries(i);
             }
-            dataGridView1.Refresh();
-            dataGridView1.Update();
+            DgvSeries.Refresh();
+            DgvSeries.Update();
         }
-
 
         /// <summary>
         /// チェック状態
@@ -69,10 +76,18 @@ namespace LogGraph
 
 
         private void Button3_Click(object sender, EventArgs e) {
+            UpdateGraphSeries();
+        }
+
+        private void UpdateGraphSeries() {
+            //DgvSeries.ReadOnly = true;
+
+            this.ColumnCheck.ReadOnly = true;
+
             listBox1.Items.Clear();
             var isCheckList = new List<bool>();
-            for (int i = 0; i < dataGridView1.Rows.Count; i++) {
-                var isCheck = (bool)dataGridView1.Rows[i].Cells[2].Value;
+            for (int i = 0; i < DgvSeries.Rows.Count; i++) {
+                var isCheck = (bool)DgvSeries.Rows[i].Cells[2].Value;
                 listBox1.Items.Add(isCheck.ToString());
                 isCheckList.Add(isCheck);
                 if (isCheck) {
@@ -83,14 +98,88 @@ namespace LogGraph
                 }
             }
             isCheckSeries = isCheckList.ToArray();
-            dataGridView1.Refresh();
-            dataGridView1.Update();
+
+            this.ColumnCheck.ReadOnly = false;
+            //DgvSeries.ReadOnly = false;
+
+            //DgvSeries.Refresh();
+            //DgvSeries.Update();
+
         }
 
         private void btnUpdate_Click(object sender, EventArgs e) {
-            dataGridView1.Rows.Clear();
-            dataGridView1.Refresh();
-            dataGridView1.Update();
+            DgvSeries.Rows.Clear();
+            DgvSeries.Refresh();
+            DgvSeries.Update();
+        }
+
+
+
+
+        private void DgvSeries_CellContentClick(object sender, DataGridViewCellEventArgs e)  {
+            this.ColumnCheck.ReadOnly = true;
+            DgvSeries.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            ChaeckStatusUpdate(DgvSeries);
+            if (DgvSeries.Rows.Count > 1) {
+                UpdateGraphSeries();
+            }
+            listBox2.Items.Add(DateTime.Now +":one" + DateTime.Now.Millisecond);
+            listBox2.SelectedIndex = listBox2.Items.Count - 1; // 最終行にカーソル移動
+            CheckInfo();
+            this.ColumnCheck.ReadOnly = false;
+        }
+
+        private void CheckInfo() {
+            listBox1.Items.Clear();
+            for (int i = 0; i < DgvSeries.Rows.Count; i++) {
+                var isCheck = (bool)DgvSeries.Rows[i].Cells[2].Value;
+                listBox1.Items.Add(isCheck.ToString());
+            }
+        }
+
+        private void DgvSeries_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
+            if (DgvSeries.Rows.Count >1) {
+                //UpdateGraphSeries();
+            }
+            //MessageBox.Show("bb");
+        }
+
+        /// <summary>
+        /// チェック状態の更新
+        /// </summary>
+        /// <param name="dgv"></param>
+        private void ChaeckStatusUpdate(DataGridView dgv) {
+            //List<Point> selectedCell = new List<Point>();
+            //// 選択状態のセルを記憶
+            //foreach (DataGridViewCell c in DgvSeries.SelectedCells) {
+            //    selectedCell.Add(new Point(c.RowIndex, c.ColumnIndex));
+            //}
+            //dgv.CurrentCell = null; // セルの選択を外す(この処理がないとチェック状態が更新されない)
+            //                        // 選択状態のセルを再現
+            //for (int i = 0; i < selectedCell.Count; i++) {
+            //    if (i == 0) {
+            //        dgv.CurrentCell = this.DgvSeries[selectedCell[i].Y, selectedCell[i].X];
+            //    }
+            //    DgvSeries.Rows[selectedCell[i].X].Cells[selectedCell[i].Y].Selected = true;
+            //}
+        }
+
+
+        private void DgvSeries_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e) {
+            this.ColumnCheck.ReadOnly = true;
+            DgvSeries.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            ChaeckStatusUpdate(DgvSeries);
+            if (DgvSeries.Rows.Count > 1) {
+                UpdateGraphSeries();
+            }
+            listBox2.Items.Add(DateTime.Now + ":two" + DateTime.Now.Millisecond);
+            listBox2.SelectedIndex = listBox2.Items.Count - 1; // 最終行にカーソル移動
+            CheckInfo();
+            this.ColumnCheck.ReadOnly = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e) {
+            CheckInfo();
         }
     }
 }

@@ -30,20 +30,22 @@ namespace LogGraph
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DgvSeries = new System.Windows.Forms.DataGridView();
+            this.ColumnIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.LoGraphFx = new LogGraph.LogGraphControl();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvSeries)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,7 +80,7 @@ namespace LogGraph
             // panel2
             // 
             this.panel2.Controls.Add(this.listBox1);
-            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.DgvSeries);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(713, 3);
             this.panel2.Name = "panel2";
@@ -95,30 +97,69 @@ namespace LogGraph
             this.listBox1.Size = new System.Drawing.Size(426, 184);
             this.listBox1.TabIndex = 1;
             // 
-            // dataGridView1
+            // DgvSeries
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column4});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(426, 328);
-            this.dataGridView1.TabIndex = 0;
+            this.DgvSeries.AllowUserToResizeRows = false;
+            this.DgvSeries.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DgvSeries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvSeries.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnIndex,
+            this.ColumnColor,
+            this.ColumnCheck});
+            this.DgvSeries.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DgvSeries.Location = new System.Drawing.Point(0, 0);
+            this.DgvSeries.Name = "DgvSeries";
+            this.DgvSeries.RowHeadersVisible = false;
+            this.DgvSeries.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.DgvSeries.RowTemplate.Height = 21;
+            this.DgvSeries.Size = new System.Drawing.Size(426, 328);
+            this.DgvSeries.TabIndex = 0;
+            this.DgvSeries.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSeries_CellContentClick);
+            this.DgvSeries.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSeries_CellContentDoubleClick);
+            this.DgvSeries.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSeries_CellValueChanged);
+            // 
+            // ColumnIndex
+            // 
+            this.ColumnIndex.HeaderText = "#";
+            this.ColumnIndex.Name = "ColumnIndex";
+            this.ColumnIndex.ReadOnly = true;
+            this.ColumnIndex.Width = 43;
+            // 
+            // ColumnColor
+            // 
+            this.ColumnColor.HeaderText = "色";
+            this.ColumnColor.Name = "ColumnColor";
+            this.ColumnColor.ReadOnly = true;
+            this.ColumnColor.Width = 45;
+            // 
+            // ColumnCheck
+            // 
+            this.ColumnCheck.HeaderText = "表示/非表示";
+            this.ColumnCheck.Name = "ColumnCheck";
+            this.ColumnCheck.Width = 79;
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.listBox2);
             this.panel3.Controls.Add(this.btnUpdate);
             this.panel3.Controls.Add(this.button3);
             this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.button4);
             this.panel3.Controls.Add(this.button1);
             this.panel3.Location = new System.Drawing.Point(3, 373);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(671, 198);
             this.panel3.TabIndex = 4;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(450, 0);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(141, 87);
+            this.btnUpdate.TabIndex = 1;
+            this.btnUpdate.Text = "btnUpdate";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // button3
             // 
@@ -150,20 +191,24 @@ namespace LogGraph
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // Column1
+            // listBox2
             // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 18;
+            this.listBox2.Location = new System.Drawing.Point(234, 97);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(356, 94);
+            this.listBox2.TabIndex = 2;
             // 
-            // Column2
+            // button4
             // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Column4";
-            this.Column4.Name = "Column4";
+            this.button4.Location = new System.Drawing.Point(9, 96);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(141, 87);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // LoGraphFx
             // 
@@ -174,16 +219,6 @@ namespace LogGraph
             this.LoGraphFx.Name = "LoGraphFx";
             this.LoGraphFx.Size = new System.Drawing.Size(706, 364);
             this.LoGraphFx.TabIndex = 2;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(450, 0);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(141, 87);
-            this.btnUpdate.TabIndex = 1;
-            this.btnUpdate.Text = "btnUpdate";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // Form1
             // 
@@ -197,7 +232,7 @@ namespace LogGraph
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvSeries)).EndInit();
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -210,15 +245,17 @@ namespace LogGraph
         private System.Windows.Forms.Button button1;
         private LogGraphControl LoGraphFx;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DgvSeries;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column4;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnIndex;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnColor;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnCheck;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button button4;
     }
 }
 
