@@ -13,15 +13,13 @@ namespace LogGraph
 {
     public partial class Form1 : Form
     {
-        int count = 1; //カウント値
-        public Form1() {
-            InitializeComponent();
-        }
-        private void Form1_Load(object sender, EventArgs e) {
-            DgvSeries.AllowUserToAddRows = false;
-        }
-
-        // リストデータ        
+        /// <summary>
+        ///カウント値
+        /// </summary>
+        private int count = 1; 
+        /// <summary>
+        /// リストデータの更新 グラフの生成
+        /// </summary>
         private void UpdateByListData() {
             count = 1;
             Random r = new Random(); //乱数
@@ -36,18 +34,26 @@ namespace LogGraph
             }
             this.LoGraphFx.UpdateValue(timeList.ToArray(), dataList.ToArray());
         }
-        private void Button1_Click(object sender, EventArgs e) {
-            UpdateByListData();
-            SetSeriesToDev();
-
+        /// <summary>
+        /// チェック状態
+        /// </summary>
+        bool[] isCheckSeries;
+        public Form1() {
+            InitializeComponent();
         }
-        private void button2_Click(object sender, EventArgs e) {
-
+        // ロード
+        private void Form1_Load(object sender, EventArgs e) {
+            DgvSeries.AllowUserToAddRows = false;
+        }
+        // シリーズの追加
+        private void BtnAddSeries_Click(object sender, EventArgs e) {
+            UpdateByListData();
             SetSeriesToDev();
         }
         /// <summary>
         /// グリッドビューにシリーズを設定する
         /// </summary>
+        // データグリッドビューにシリーズを追加
         private void SetSeriesToDev() {
             DgvSeries.Rows.Clear();
             LoGraphFx.InfoSeries(out string[] name, out Color[] color, out string[] colorName);
@@ -68,17 +74,6 @@ namespace LogGraph
             DgvSeries.Refresh();
             DgvSeries.Update();
         }
-
-        /// <summary>
-        /// チェック状態
-        /// </summary>
-        bool[] isCheckSeries;
-
-
-        private void Button3_Click(object sender, EventArgs e) {
-            UpdateGraphSeries();
-        }
-
         private void UpdateGraphSeries() {
             listBox1.Items.Clear();
             var isCheckList = new List<bool>();
@@ -95,27 +90,26 @@ namespace LogGraph
             }
             isCheckSeries = isCheckList.ToArray();
         }
-
-        private void btnUpdate_Click(object sender, EventArgs e) {
+        private void BtnUpdate_Click(object sender, EventArgs e) {
             DgvSeries.Rows.Clear();
             DgvSeries.Refresh();
             DgvSeries.Update();
         }
-
+        // シングルクリック
         private void DgvSeries_CellContentClick(object sender, DataGridViewCellEventArgs e)  {
-            this.ColumnCheck.ReadOnly = true;
-            UpdateGraphSeries();
-            this.ColumnCheck.ReadOnly = false;
+            CellClickAndDoubleClick();
         }
-
+        // ダブルクリック
         private void DgvSeries_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e) {
+            CellClickAndDoubleClick();
+        }
+        // クリック処理
+        private void CellClickAndDoubleClick() {
             this.ColumnCheck.ReadOnly = true;
             UpdateGraphSeries();
-            CheckInfo();
             this.ColumnCheck.ReadOnly = false;
         }
-
-
+        // チェック状態を確認
         private void CheckInfo() {
             listBox2.Items.Add(DateTime.Now + ":one" + DateTime.Now.Millisecond);
             listBox2.SelectedIndex = listBox2.Items.Count - 1; // 最終行にカーソル移動
@@ -125,8 +119,8 @@ namespace LogGraph
                 listBox1.Items.Add(isCheck.ToString());
             }
         }
-
-        private void Button4_Click(object sender, EventArgs e) {
+        // 出力ログ
+        private void BtnOutputLog_Click(object sender, EventArgs e) {
             CheckInfo();
         }
     }

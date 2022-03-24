@@ -28,17 +28,15 @@ namespace LogGraph
         private void InitializeComponent() {
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.LoGraphFx = new LogGraph.LogGraphControl();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.DgvSeries = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnOutputLog = new System.Windows.Forms.Button();
+            this.btnAddSeries = new System.Windows.Forms.Button();
+            this.LoGraphFx = new LogGraph.LogGraphControl();
             this.ColumnIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -77,16 +75,6 @@ namespace LogGraph
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1142, 583);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // LoGraphFx
-            // 
-            this.LoGraphFx.BackColor = System.Drawing.SystemColors.Window;
-            this.LoGraphFx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoGraphFx.Location = new System.Drawing.Point(2, 3);
-            this.LoGraphFx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.LoGraphFx.Name = "LoGraphFx";
-            this.LoGraphFx.Size = new System.Drawing.Size(706, 364);
-            this.LoGraphFx.TabIndex = 2;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.listBox1);
@@ -110,7 +98,6 @@ namespace LogGraph
             // DgvSeries
             // 
             this.DgvSeries.AllowUserToResizeRows = false;
-            this.DgvSeries.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.DgvSeries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvSeries.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnIndex,
@@ -131,10 +118,8 @@ namespace LogGraph
             // 
             this.panel3.Controls.Add(this.listBox2);
             this.panel3.Controls.Add(this.btnUpdate);
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.button4);
-            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.BtnOutputLog);
+            this.panel3.Controls.Add(this.btnAddSeries);
             this.panel3.Location = new System.Drawing.Point(3, 373);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(671, 198);
@@ -155,49 +140,39 @@ namespace LogGraph
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(141, 87);
             this.btnUpdate.TabIndex = 1;
-            this.btnUpdate.Text = "btnUpdate";
+            this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
-            // button3
+            // BtnOutputLog
             // 
-            this.button3.Location = new System.Drawing.Point(303, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(141, 87);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            this.BtnOutputLog.Location = new System.Drawing.Point(9, 96);
+            this.BtnOutputLog.Name = "BtnOutputLog";
+            this.BtnOutputLog.Size = new System.Drawing.Size(141, 87);
+            this.BtnOutputLog.TabIndex = 1;
+            this.BtnOutputLog.Text = "OutputLog";
+            this.BtnOutputLog.UseVisualStyleBackColor = true;
+            this.BtnOutputLog.Click += new System.EventHandler(this.BtnOutputLog_Click);
             // 
-            // button2
+            // btnAddSeries
             // 
-            this.button2.Location = new System.Drawing.Point(156, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(141, 87);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnAddSeries.Location = new System.Drawing.Point(9, 3);
+            this.btnAddSeries.Name = "btnAddSeries";
+            this.btnAddSeries.Size = new System.Drawing.Size(141, 87);
+            this.btnAddSeries.TabIndex = 1;
+            this.btnAddSeries.Text = "AddSiries";
+            this.btnAddSeries.UseVisualStyleBackColor = true;
+            this.btnAddSeries.Click += new System.EventHandler(this.BtnAddSeries_Click);
             // 
-            // button4
+            // LoGraphFx
             // 
-            this.button4.Location = new System.Drawing.Point(9, 96);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(141, 87);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(9, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 87);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.LoGraphFx.BackColor = System.Drawing.SystemColors.Window;
+            this.LoGraphFx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoGraphFx.Location = new System.Drawing.Point(2, 3);
+            this.LoGraphFx.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.LoGraphFx.Name = "LoGraphFx";
+            this.LoGraphFx.Size = new System.Drawing.Size(706, 364);
+            this.LoGraphFx.TabIndex = 2;
             // 
             // ColumnIndex
             // 
@@ -209,11 +184,11 @@ namespace LogGraph
             // 
             // ColumnColor
             // 
+            this.ColumnColor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ColumnColor.HeaderText = "色";
             this.ColumnColor.Name = "ColumnColor";
             this.ColumnColor.ReadOnly = true;
             this.ColumnColor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnColor.Width = 26;
             // 
             // ColumnCheck
             // 
@@ -243,17 +218,15 @@ namespace LogGraph
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAddSeries;
         private LogGraphControl LoGraphFx;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView DgvSeries;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button BtnOutputLog;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnIndex;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnColor;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnCheck;
