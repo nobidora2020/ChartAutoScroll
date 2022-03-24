@@ -75,11 +75,11 @@ namespace LogGraph
             DgvSeries.Update();
         }
         private void UpdateGraphSeries() {
-            listBox1.Items.Clear();
+            clbCheckInfo.Items.Clear();
             var isCheckList = new List<bool>();
             for (int i = 0; i < DgvSeries.Rows.Count; i++) {
                 var isCheck = (bool)DgvSeries.Rows[i].Cells[2].Value;
-                listBox1.Items.Add(isCheck.ToString());
+                clbCheckInfo.Items.Add(isCheck.ToString());
                 isCheckList.Add(isCheck);
                 if (isCheck) {
                     LoGraphFx.ShowSeries(i);
@@ -113,10 +113,10 @@ namespace LogGraph
         private void CheckInfo() {
             listBox2.Items.Add(DateTime.Now + ":one" + DateTime.Now.Millisecond);
             listBox2.SelectedIndex = listBox2.Items.Count - 1; // 最終行にカーソル移動
-            listBox1.Items.Clear();
+            clbCheckInfo.Items.Clear();
             for (int i = 0; i < DgvSeries.Rows.Count; i++) {
                 var isCheck = (bool)DgvSeries.Rows[i].Cells[2].Value;
-                listBox1.Items.Add(isCheck.ToString());
+                clbCheckInfo.Items.Add(isCheck.ToString());
             }
         }
         // 出力ログ
